@@ -1,0 +1,12 @@
+.container{
+    color:white;
+    margin-top: 10%;
+    flex-wrap: wrap;
+}
+
+h1{
+    font-size:64px ;
+}
+p{
+    font-size: xx-large;
+}
