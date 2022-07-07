@@ -1,12 +1,12 @@
 .myimage{
     display: flex;
     justify-content: space-between;
-    margin-top:2%;
     flex-wrap: wrap;
+    margin-top: 2%;
 }
 
 .description{
-    width:80%;
+    width:70%;
  
 }
 

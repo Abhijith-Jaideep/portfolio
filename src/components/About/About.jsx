@@ -14,7 +14,7 @@ const About = () => {
                         <p>
                             I am a Computer Science Engineering Student who is passionate and dedicated to learning
                             and honing my skills in Full Stack Web Development, During my journey of
-                            learning this trade i learnt a lot of things regarding how the web works,what constitutes
+                            learning this trade, I learnt how the web works,what constitutes
                             a good User Experience and broadened my horizons to learning new technologies.
                         </p>
 
