@@ -13,8 +13,8 @@ const Skills = () => {
                     <li>Express js <i class="fa-solid fa-e"></i><i class="fa-solid fa-xmark"></i></li>
                     <li>React js <i class="fa-brands fa-react"></i></li>
                     <li>Node js <i class="fa-brands fa-node-js"></i></li>
-                    <li>SQL<i class="fa-brands fa-database"></i></li>
-                    <li>Java <i class="fa-solid fa-square-j"></i></li>
+                    <li>SQL <i class="fa-solid fa-database"></i></li>
+                    <li>Java <i class="fa-brands fa-java"></i></li>
                 </div>
             </div>
         </div>
