@@ -1,0 +1,13 @@
+.skill{
+    margin-top: 2%;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    row-gap: 16px;
+}
+
+.skill li{
+    list-style:upper-roman;
+    font-size: larger;
+    font-weight: bold;
+}

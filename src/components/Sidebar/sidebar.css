@@ -1,0 +1,20 @@
+.flexbox{
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+    width: 10vh;
+    align-items: center;
+    justify-content: space-around;
+    color: #51cdb5;
+    margin-top:5%;
+}
+
+a,a:visited,a:active,i{
+    color: #51cdb5;
+    cursor: pointer;
+}
+
+i:hover{
+    position: relative;
+    bottom: 10px;
+}

@@ -1,0 +1,23 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body{
+    background-color:#0a192f;
+}
+
+h2{
+    color:#51cdb5;
+    text-decoration:underline;
+}
+
+.main-container{
+    max-width:100vw;
+    display:flex;
+    justify-content: center;
+}
+
+.container{
+    width:90%;
+}
