@@ -3,7 +3,7 @@ export const profile = {
   role: "Software Engineer",
   focus: "Mobile Development · Full-Stack · Cloud",
   location: "Melbourne, VIC",
-  workRights: "Full working rights in Australia — no sponsorship required",
+  workRights: "Full working rights in Australia, no sponsorship required",
   email: "abhijithjaideep176@gmail.com",
   phone: "0469326984",
   linkedin: "https://www.linkedin.com/in/abhijith-jaideep/",
@@ -14,7 +14,7 @@ export const profile = {
 };
 
 export const uvp =
-  "I ship production mobile apps end-to-end — from native Android and Flutter front-ends to the Flask APIs and AWS infrastructure behind them.";
+  "I ship production mobile apps end-to-end, from native Android and Flutter front-ends to the Flask APIs and AWS infrastructure behind them.";
 
 export const heroMetrics = [
   { value: "3", label: "production mobile & cloud builds" },
@@ -63,7 +63,7 @@ export const caseStudies: CaseStudy[] = [
     problem:
       "The venue managed event discovery, hall rental, and bookings manually, with no self-serve way for customers to browse events, view a gallery, or complete a booking end to end.",
     role:
-      "Sole engineer — designed and built the app from scratch, including the reusable UI system and the booking business logic.",
+      "Sole engineer. Designed and built the app from scratch, including the reusable UI system and the booking business logic.",
     architecture: [
       "Kotlin + Jetpack Compose, following Material Design principles",
       "Reusable component library: navigation, forms, cards, custom theming, structured layouts",
@@ -96,9 +96,9 @@ export const caseStudies: CaseStudy[] = [
     summary:
       "A production-ready customer-facing platform pairing a Flutter mobile app with a Flask backend-for-frontend, built as a postgraduate industry experience project.",
     problem:
-      "Helping young Australians understand and reduce their carbon footprint required turning something tedious — receipt-by-receipt tracking — into a fast, game-like habit.",
+      "Helping young Australians understand and reduce their carbon footprint required turning something tedious (receipt-by-receipt tracking) into a fast, game-like habit.",
     role:
-      "Full-stack contributor across the mobile app and BFF — API pipelines, ranking logic, and UI workflows, shipped as part of a cross-functional Agile team.",
+      "Full-stack contributor across the mobile app and BFF, covering API pipelines, ranking logic, and UI workflows, shipped as part of a cross-functional Agile team.",
     architecture: [
       "Flutter mobile app talking to a Flask backend-for-frontend (BFF)",
       "REST API pipelines converting scanned grocery receipts into structured data via OCR",
@@ -135,7 +135,7 @@ export const caseStudies: CaseStudy[] = [
     problem:
       "Birdwatchers and wildlife photographers needed a fast, accurate way to identify species from their own photos and footage without manual lookup.",
     role:
-      "Designed and built the backend pipeline end to end — infrastructure, containerization, and operational debugging.",
+      "Designed and built the backend pipeline end to end, covering infrastructure, containerization, and operational debugging.",
     architecture: [
       "AWS Lambda functions triggered on upload, backed by S3 for media storage",
       "DynamoDB / PostgreSQL for structured metadata and classification results",
@@ -143,7 +143,7 @@ export const caseStudies: CaseStudy[] = [
       "Dockerized backend dependencies for consistent, reproducible deployment",
     ],
     highlights: [
-      "Serverless design — no idle infrastructure cost between uploads",
+      "Serverless design, so no idle infrastructure cost between uploads",
       "Proactively debugged runtime failures using CloudWatch logs",
       "Built to handle both image and video classification through the same pipeline",
     ],
@@ -169,7 +169,7 @@ export const notableBuild = {
   summary:
     "Bachelor's capstone project: an interactive robotic railway assistant giving passengers destination and train-announcement guidance in 10+ languages.",
   highlights: [
-    "Patented design — Raspberry Pi with a custom 3D-printed body",
+    "Patented design built on Raspberry Pi with a custom 3D-printed body",
     "Neural network model queried Google APIs for translation and Railway system APIs for live train/announcement data",
     "Multilingual voice assistant using speech recognition, translation APIs, and text-to-speech across 10+ languages",
   ],
@@ -186,7 +186,7 @@ export interface ExperienceEntry {
 
 export const experience: ExperienceEntry[] = [
   {
-    role: "Postgraduate Industry Experience Project — SustainaPet",
+    role: "Postgraduate Industry Experience Project: SustainaPet",
     org: "Monash University (Industry Partner Project)",
     period: "Jul 2025 – Nov 2025",
     location: "Melbourne, VIC",
@@ -194,7 +194,7 @@ export const experience: ExperienceEntry[] = [
       "Developed and deployed cloud-based frontend and backend platform components, including receipt-based carbon estimation",
       "Designed, integrated, and tested REST API pipelines converting scanned images to text via OCR, leaderboards, and graph models with backend validation",
       "Performed end-to-end validation, built ranking logic, and dynamic UI workflows",
-      "Wrote clean, maintainable, testable code under linting, formatting, static analysis, and code review standards — 20+ structured pull requests",
+      "Wrote clean, maintainable, testable code under linting, formatting, static analysis, and code review standards, contributing 20+ structured pull requests",
       "Collaborated cross-functionally within an Agile sprint framework across the full lifecycle: planning, design, implementation, testing, deployment support",
     ],
   },

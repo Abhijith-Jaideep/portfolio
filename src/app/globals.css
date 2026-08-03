@@ -1,17 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0a0d12;
-  --surface: #12161e;
-  --surface-hover: #171c26;
-  --foreground: #e9edf1;
-  --muted: #8b96a5;
-  --muted-2: #5b6470;
+  --background: #0a0709;
+  --surface: #15100f;
+  --surface-hover: #1c1513;
+  --foreground: #f5efe9;
+  --muted: #a2938c;
+  --muted-2: #6d605b;
   --border: rgba(255, 255, 255, 0.09);
-  --border-strong: rgba(255, 255, 255, 0.16);
-  --accent: #34d399;
-  --accent-strong: #10b981;
-  --accent-soft: rgba(52, 211, 153, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.17);
+
+  /* Crimson drives fills, borders, and energy. Never small text. */
+  --accent: #e01b2e;
+  --accent-strong: #b3121f;
+  --accent-soft: rgba(224, 27, 46, 0.14);
+
+  /* Gold carries small accent text. High contrast on near-black. */
+  --gold: #f0b429;
+  --gold-strong: #d99a12;
+  --gold-soft: rgba(240, 180, 41, 0.13);
 }
 
 @theme inline {
@@ -26,8 +33,12 @@
   --color-accent: var(--accent);
   --color-accent-strong: var(--accent-strong);
   --color-accent-soft: var(--accent-soft);
+  --color-gold: var(--gold);
+  --color-gold-strong: var(--gold-strong);
+  --color-gold-soft: var(--gold-soft);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-display);
 }
 
 html {
@@ -42,7 +53,7 @@ body {
 
 ::selection {
   background: var(--accent);
-  color: #06110d;
+  color: #fff;
 }
 
 .section-shell {
@@ -57,21 +68,176 @@ body {
   }
 }
 
+/* Condensed display type for headings. Bebas is uppercase-only by design. */
+.display {
+  font-family: var(--font-display), var(--font-geist-sans), sans-serif;
+  letter-spacing: 0.01em;
+  line-height: 0.92;
+}
+
 .tag-pill {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  padding: 0.2rem 0.65rem;
+  border-radius: 2px;
+  padding: 0.2rem 0.6rem;
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.02em;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
   color: var(--muted);
 }
 
-.noise-grid {
-  background-image:
-    radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.06) 1px, transparent 0);
-  background-size: 28px 28px;
+.tag-pill-gold {
+  border-color: rgba(240, 180, 41, 0.4);
+  color: var(--gold);
+  background: var(--gold-soft);
+}
+
+/* Comic halftone dot field. Sits behind hero and section breaks. */
+.halftone {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(224, 27, 46, 0.55) 1.1px,
+    transparent 1.2px
+  );
+  background-size: 9px 9px;
+}
+
+.halftone-gold {
+  background-image: radial-gradient(
+    circle at center,
+    rgba(240, 180, 41, 0.45) 1.1px,
+    transparent 1.2px
+  );
+  background-size: 11px 11px;
+}
+
+/* Angular corner cut. Gives panels the comic/HUD silhouette. */
+.clip-panel {
+  clip-path: polygon(
+    0 0,
+    calc(100% - 18px) 0,
+    100% 18px,
+    100% 100%,
+    18px 100%,
+    0 calc(100% - 18px)
+  );
+}
+
+.clip-notch {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+}
+
+/* HUD corner brackets, drawn with gradients so no extra markup is needed. */
+.hud-frame {
+  position: relative;
+}
+
+.hud-frame::before,
+.hud-frame::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--gold);
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.hud-frame::before {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid;
+  border-left: 2px solid;
+}
+
+.hud-frame::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid;
+  border-right: 2px solid;
+}
+
+/* Scanline sweep on hover. Subtle, one pass, no looping distraction. */
+.scanline {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(240, 180, 41, 0.07) 45%,
+    rgba(224, 27, 46, 0.1) 50%,
+    transparent 100%
+  );
+  transform: translateY(-100%);
+  transition: transform 0.7s cubic-bezier(0.21, 0.47, 0.32, 0.98);
+  pointer-events: none;
+}
+
+.scanline:hover::after {
+  transform: translateY(100%);
+}
+
+/* Text glitch on hover, offset crimson/gold ghosts. */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.12s linear;
+  pointer-events: none;
+}
+
+.glitch::before {
+  color: var(--accent);
+  transform: translate(-2px, 1px);
+}
+
+.glitch::after {
+  color: var(--gold);
+  transform: translate(2px, -1px);
+}
+
+.glitch:hover::before,
+.glitch:hover::after {
+  opacity: 0.55;
+}
+
+.glow-accent {
+  box-shadow: 0 0 0 1px rgba(224, 27, 46, 0.35), 0 8px 30px -10px rgba(224, 27, 46, 0.5);
+}
+
+/* Diagonal rule used as a section divider. */
+.slash-rule {
+  height: 3px;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--accent) 0 10px,
+    transparent 10px 18px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .scanline::after,
+  .glitch::before,
+  .glitch::after {
+    transition: none;
+  }
 }

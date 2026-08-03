@@ -1,31 +1,40 @@
 import { skills } from "@/data/content";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
 export function Skills() {
   const groups = Object.entries(skills);
 
   return (
-    <section id="skills" className="scroll-mt-16 py-24 md:py-32">
-      <div className="section-shell">
+    <section id="skills" className="relative scroll-mt-16 py-24 md:py-32">
+      <div className="halftone-gold pointer-events-none absolute right-0 top-16 h-40 w-40 opacity-40" />
+
+      <div className="section-shell relative">
         <Reveal>
-          <p className="font-mono text-sm text-accent">Skills</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Full vertical slice, not just the UI
-          </h2>
+          <SectionHeading
+            kicker="Loadout"
+            title="Full vertical slice, not just the UI"
+          />
         </Reveal>
 
-        <div className="mt-10 grid gap-5 sm:grid-cols-2">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2">
           {groups.map(([group, items], i) => (
             <Reveal key={group} delay={0.05 * i}>
-              <div className="h-full rounded-2xl border border-border bg-surface p-6">
-                <h3 className="font-mono text-xs uppercase tracking-wider text-accent">
-                  {group}
-                </h3>
+              <div className="hud-frame h-full border border-border bg-surface p-6">
+                <div className="flex items-baseline justify-between gap-3">
+                  <h3 className="display text-2xl uppercase text-foreground">
+                    {group}
+                  </h3>
+                  <span className="font-mono text-xs text-muted-2">
+                    {String(items.length).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="slash-rule mt-3 opacity-60" />
                 <div className="mt-4 flex flex-wrap gap-2">
                   {items.map((item) => (
                     <span
                       key={item}
-                      className="rounded-md border border-border-strong px-2.5 py-1 text-sm text-muted"
+                      className="border border-border-strong px-2.5 py-1 font-mono text-xs text-muted transition-colors hover:border-gold/50 hover:text-gold"
                     >
                       {item}
                     </span>

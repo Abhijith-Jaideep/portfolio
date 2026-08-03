@@ -10,7 +10,12 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-2xl border border-border bg-surface transition-colors hover:border-border-strong">
+    <div
+      className={clsx(
+        "hud-frame scanline border bg-surface transition-colors",
+        open ? "border-accent/60" : "border-border hover:border-gold/40"
+      )}
+    >
       <button
         onClick={() => setOpen((v) => !v)}
         className="grid w-full grid-cols-1 gap-6 p-6 text-left md:grid-cols-[auto_1fr_auto] md:items-center md:p-8"
@@ -33,11 +38,11 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                 {tag}
               </span>
             ))}
-            <span className="font-mono text-xs text-muted-2">
+            <span className="font-mono text-xs uppercase tracking-wider text-muted-2">
               {study.period}
             </span>
           </div>
-          <h3 className="mt-3 text-xl font-semibold text-foreground sm:text-2xl">
+          <h3 className="display mt-3 text-3xl uppercase text-foreground sm:text-4xl">
             {study.name}
           </h3>
           <p className="mt-2 text-sm text-muted sm:text-base">
@@ -45,14 +50,16 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
           </p>
         </div>
 
-        <div className="flex items-center gap-2 self-start md:self-center">
-          <span className="text-sm text-accent">
-            {open ? "Collapse" : "View case study"}
+        <div className="flex items-center gap-3 self-start md:self-center">
+          <span className="font-mono text-xs uppercase tracking-[0.12em] text-gold">
+            {open ? "Collapse" : "Open file"}
           </span>
           <span
             className={clsx(
-              "flex h-8 w-8 items-center justify-center rounded-full border border-border-strong text-foreground transition-transform",
-              open && "rotate-45"
+              "flex h-8 w-8 items-center justify-center border text-foreground transition-transform duration-300",
+              open
+                ? "rotate-45 border-accent bg-accent text-white"
+                : "border-gold/50 text-gold"
             )}
           >
             +
@@ -94,7 +101,7 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                         href={study.links.repo}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted hover:text-accent"
+                        className="font-mono text-xs uppercase tracking-wider text-muted hover:text-gold"
                       >
                         Repository ↗
                       </a>
@@ -104,13 +111,13 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                         href={study.links.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-muted hover:text-accent"
+                        className="font-mono text-xs uppercase tracking-wider text-muted hover:text-gold"
                       >
                         Live app ↗
                       </a>
                     ) : (
-                      <span className="text-muted-2">
-                        Private beta — demo video above
+                      <span className="font-mono text-xs uppercase tracking-wider text-muted-2">
+                        Private beta, demo above
                       </span>
                     )}
                   </div>
@@ -135,7 +142,8 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
 function CaseStudySection({ title, text }: { title: string; text: string }) {
   return (
     <div>
-      <h4 className="font-mono text-xs uppercase tracking-wider text-accent">
+      <h4 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-gold">
+        <span className="h-1.5 w-1.5 rotate-45 bg-accent" />
         {title}
       </h4>
       <p className="mt-2 text-sm leading-relaxed text-muted sm:text-base">
@@ -156,19 +164,20 @@ function CaseStudyList({
 }) {
   return (
     <div>
-      <h4 className="font-mono text-xs uppercase tracking-wider text-accent">
+      <h4 className="flex items-center gap-2 font-mono text-xs uppercase tracking-[0.16em] text-gold">
+        <span className="h-1.5 w-1.5 rotate-45 bg-accent" />
         {title}
       </h4>
       <ul className="mt-2 space-y-2">
         {items.map((item) => (
           <li
             key={item}
-            className="flex gap-2.5 text-sm leading-relaxed text-muted sm:text-base"
+            className="flex gap-3 text-sm leading-relaxed text-muted sm:text-base"
           >
             <span
               className={clsx(
-                "mt-2 h-1 w-1 flex-none rounded-full",
-                accent ? "bg-accent" : "bg-muted-2"
+                "mt-1.5 h-1.5 w-1.5 flex-none rotate-45",
+                accent ? "bg-gold" : "bg-muted-2"
               )}
             />
             {item}

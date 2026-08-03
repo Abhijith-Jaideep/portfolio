@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { caseStudies, notableBuild, type PlatformTag } from "@/data/content";
 import { CaseStudyCard } from "./CaseStudyCard";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
 const FILTERS: Array<PlatformTag | "All"> = [
   "All",
@@ -28,15 +29,11 @@ export function CaseStudies() {
     <section id="work" className="scroll-mt-16 py-24 md:py-32">
       <div className="section-shell">
         <Reveal>
-          <p className="font-mono text-sm text-accent">Featured Work</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            Production builds, not toy projects
-          </h2>
-          <p className="mt-4 max-w-2xl text-muted">
+          <SectionHeading kicker="Featured Work" title="Production builds, not toy projects">
             Three shipped systems spanning native mobile, full-stack mobile,
-            and cloud infrastructure — each built end to end, not just the UI
+            and cloud infrastructure, each built end to end, not just the UI
             layer.
-          </p>
+          </SectionHeading>
         </Reveal>
 
         <Reveal delay={0.1}>
@@ -46,10 +43,10 @@ export function CaseStudies() {
                 key={f}
                 onClick={() => setFilter(f)}
                 className={clsx(
-                  "rounded-full border px-4 py-1.5 text-sm transition-colors",
+                  "clip-notch border px-4 py-2 font-mono text-xs uppercase tracking-[0.12em] transition-colors",
                   filter === f
-                    ? "border-accent bg-accent-soft text-accent"
-                    : "border-border-strong text-muted hover:text-foreground"
+                    ? "border-accent bg-accent text-white"
+                    : "border-border-strong text-muted hover:border-gold/50 hover:text-gold"
                 )}
               >
                 {f}
@@ -67,27 +64,27 @@ export function CaseStudies() {
         </div>
 
         <Reveal delay={0.1}>
-          <div className="mt-8 rounded-2xl border border-dashed border-border-strong p-6 md:p-8">
+          <div className="hud-frame mt-8 border border-dashed border-border-strong bg-surface/40 p-6 md:p-8">
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-accent">
-                  Also worth a look
+                <p className="font-mono text-xs uppercase tracking-[0.16em] text-gold">
+                  Bonus Round
                 </p>
-                <h3 className="mt-2 text-lg font-semibold text-foreground">
-                  {notableBuild.name}{" "}
-                  <span className="font-normal text-muted">
-                    — {notableBuild.tagline}
-                  </span>
+                <h3 className="display mt-2 text-2xl uppercase text-foreground sm:text-3xl">
+                  {notableBuild.name}
                 </h3>
-                <p className="mt-1 text-sm text-muted-2">
-                  {notableBuild.period} · Patented
+                <p className="mt-1 text-sm text-muted">
+                  {notableBuild.tagline}
+                </p>
+                <p className="mt-2 font-mono text-xs uppercase tracking-wider text-muted-2">
+                  {notableBuild.period} / Patented
                 </p>
               </div>
             </div>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-5 space-y-2">
               {notableBuild.highlights.map((h) => (
-                <li key={h} className="flex gap-2.5 text-sm text-muted">
-                  <span className="mt-2 h-1 w-1 flex-none rounded-full bg-muted-2" />
+                <li key={h} className="flex gap-3 text-sm text-muted">
+                  <span className="mt-1.5 h-1.5 w-1.5 flex-none rotate-45 bg-accent" />
                   {h}
                 </li>
               ))}

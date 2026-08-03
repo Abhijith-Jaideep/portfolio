@@ -1,22 +1,23 @@
 import { certifications, education, experience } from "@/data/content";
 import { Reveal } from "./Reveal";
+import { SectionHeading } from "./SectionHeading";
 
 export function About() {
   return (
     <section id="about" className="scroll-mt-16 py-24 md:py-32">
       <div className="section-shell">
         <Reveal>
-          <p className="font-mono text-sm text-accent">About</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-            From retail floors to production pipelines
-          </h2>
+          <SectionHeading
+            kicker="Origin Story"
+            title="From retail floors to production pipelines"
+          />
           <p className="mt-5 max-w-2xl leading-relaxed text-muted">
             I build mobile, web, and cloud-based backend services with
-            Python, Java, Kotlin, and AWS — and I care as much about the
+            Python, Java, Kotlin, and AWS, and I care as much about the
             person using the app as the system behind it. Working a
             fast-paced role with a leading Australian retailer taught me to
             manage stakeholders, stay calm under pressure, and keep the
-            customer experience front and centre even during peak periods —
+            customer experience front and centre even during peak periods.
             I carry that mindset into how I build software: clean, testable
             code, API design that scales, and continuous deployment across
             agile teams.
@@ -26,7 +27,7 @@ export function About() {
         <div className="mt-14 grid gap-12 lg:grid-cols-[1.3fr_1fr]">
           <div>
             <Reveal>
-              <h3 className="font-mono text-xs uppercase tracking-wider text-muted-2">
+              <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-gold">
                 Experience
               </h3>
             </Reveal>
@@ -34,25 +35,25 @@ export function About() {
               {experience.map((entry, i) => (
                 <Reveal key={entry.role} delay={0.05 * i}>
                   <li className="relative">
-                    <span className="absolute -left-[1.65rem] top-1.5 h-2.5 w-2.5 rounded-full border-2 border-accent bg-background" />
+                    <span className="absolute -left-[1.72rem] top-2 h-2.5 w-2.5 rotate-45 bg-accent" />
                     <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                      <h4 className="font-medium text-foreground">
+                      <h4 className="display text-xl uppercase text-foreground">
                         {entry.role}
                       </h4>
-                      <span className="font-mono text-xs text-muted-2">
+                      <span className="font-mono text-xs uppercase tracking-wider text-muted-2">
                         {entry.period}
                       </span>
                     </div>
-                    <p className="mt-0.5 text-sm text-muted">
+                    <p className="mt-1 text-sm text-muted">
                       {entry.org} · {entry.location}
                     </p>
                     <ul className="mt-3 space-y-2">
                       {entry.bullets.map((b) => (
                         <li
                           key={b}
-                          className="flex gap-2.5 text-sm leading-relaxed text-muted"
+                          className="flex gap-3 text-sm leading-relaxed text-muted"
                         >
-                          <span className="mt-2 h-1 w-1 flex-none rounded-full bg-muted-2" />
+                          <span className="mt-1.5 h-1.5 w-1.5 flex-none rotate-45 bg-muted-2" />
                           {b}
                         </li>
                       ))}
@@ -66,14 +67,14 @@ export function About() {
           <div className="space-y-10">
             <div>
               <Reveal>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-muted-2">
+                <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-gold">
                   Education
                 </h3>
               </Reveal>
               <div className="mt-5 space-y-5">
                 {education.map((entry, i) => (
                   <Reveal key={entry.degree} delay={0.05 * i}>
-                    <div className="rounded-xl border border-border bg-surface p-4">
+                    <div className="hud-frame border border-border bg-surface p-4 transition-colors hover:border-gold/40">
                       <p className="font-medium text-foreground">
                         {entry.degree}
                       </p>
@@ -92,14 +93,14 @@ export function About() {
 
             <div>
               <Reveal>
-                <h3 className="font-mono text-xs uppercase tracking-wider text-muted-2">
+                <h3 className="font-mono text-xs uppercase tracking-[0.16em] text-gold">
                   Certifications
                 </h3>
               </Reveal>
               <div className="mt-5 space-y-3">
                 {certifications.map((cert, i) => (
                   <Reveal key={cert.name} delay={0.05 * i}>
-                    <div className="rounded-xl border border-border bg-surface p-4">
+                    <div className="hud-frame border border-border bg-surface p-4 transition-colors hover:border-gold/40">
                       <p className="font-medium text-foreground">
                         {cert.name}
                       </p>

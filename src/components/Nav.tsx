@@ -52,7 +52,7 @@ export function Nav() {
       <nav className="section-shell flex h-16 items-center justify-between">
         <a
           href="#top"
-          className="font-mono text-sm tracking-tight text-foreground/90 hover:text-accent transition-colors"
+          className="display text-xl uppercase tracking-wide text-foreground/90 transition-colors hover:text-gold"
         >
           Abhijith Jaideep
           <span className="text-accent">.</span>
@@ -64,9 +64,9 @@ export function Nav() {
               <a
                 href={`#${link.id}`}
                 className={clsx(
-                  "text-sm transition-colors",
+                  "font-mono text-xs uppercase tracking-[0.14em] transition-colors",
                   active === link.id
-                    ? "text-accent"
+                    ? "text-gold"
                     : "text-muted hover:text-foreground"
                 )}
               >
@@ -79,7 +79,7 @@ export function Nav() {
         <div className="hidden md:block">
           <a
             href="#contact"
-            className="inline-flex items-center rounded-full bg-accent px-4 py-2 text-sm font-medium text-[#06110d] hover:bg-accent-strong transition-colors"
+            className="clip-notch inline-flex items-center bg-accent px-5 py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-white transition-colors hover:bg-accent-strong"
           >
             Hire Me
           </a>
@@ -109,8 +109,8 @@ export function Nav() {
                   href={`#${link.id}`}
                   onClick={() => setMenuOpen(false)}
                   className={clsx(
-                    "block py-2 text-sm",
-                    active === link.id ? "text-accent" : "text-muted"
+                    "block py-2 font-mono text-xs uppercase tracking-[0.14em]",
+                    active === link.id ? "text-gold" : "text-muted"
                   )}
                 >
                   {link.label}
@@ -121,7 +121,7 @@ export function Nav() {
               <a
                 href="#contact"
                 onClick={() => setMenuOpen(false)}
-                className="inline-flex items-center rounded-full bg-accent px-4 py-2 text-sm font-medium text-[#06110d]"
+                className="clip-notch inline-flex items-center bg-accent px-5 py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-white"
               >
                 Hire Me
               </a>
