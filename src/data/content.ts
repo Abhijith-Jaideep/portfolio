@@ -84,7 +84,7 @@ export const caseStudies: CaseStudy[] = [
     stack: ["Kotlin", "Jetpack Compose", "Material Design"],
     links: {
       demoVideo: null,
-      repo: "https://github.com/Abhijith-Jaideep",
+      repo: "https://github.com/Abhijith-Jaideep/Kalakshetra-App",
       live: null,
     },
     media: { kind: "phone" },
@@ -121,7 +121,7 @@ export const caseStudies: CaseStudy[] = [
     stack: ["Flutter", "Dart", "Flask", "Python", "REST APIs", "OCR"],
     links: {
       demoVideo: "/video/sustainapet-scan.mp4",
-      repo: "https://github.com/Abhijith-Jaideep",
+      repo: "https://github.com/Abhijith-Jaideep/SustainaPet",
       live: null,
     },
     media: {
@@ -162,7 +162,7 @@ export const caseStudies: CaseStudy[] = [
     stack: ["AWS Lambda", "S3", "DynamoDB", "PostgreSQL", "Docker", "CloudWatch"],
     links: {
       demoVideo: null,
-      repo: "https://github.com/Abhijith-Jaideep",
+      repo: null,
       live: null,
     },
     media: { kind: "diagram" },
