@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" width="780" height="300" role="img" aria-label="ParkingBae architecture: React front end calls a Flask API which reads PostgreSQL and the City of Melbourne sensor API, then merges them by kerbside ID">
+  <defs>
+    <marker id="pb-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e01b2e"/>
+    </marker>
+    <style>
+      .bx   { fill:#15100f; stroke:rgba(255,255,255,0.18); stroke-width:1.5; }
+      .bxa  { stroke:#e01b2e; }
+      .ttl  { font-family:'Segoe UI',Arial,sans-serif; font-size:15px; font-weight:700; fill:#f5efe9; }
+      .sub  { font-family:Consolas,'Courier New',monospace; font-size:11px; fill:#a2938c; }
+      .note { font-family:Consolas,'Courier New',monospace; font-size:10.5px; fill:#f0b429; }
+      .ln   { stroke:#e01b2e; stroke-width:1.8; fill:none; marker-end:url(#pb-arrow); }
+    </style>
+  </defs>
+
+  <!-- Client -->
+  <rect class="bx" x="14" y="112" width="156" height="76" rx="3"/>
+  <text class="ttl" x="30" y="140">React + Tailwind</text>
+  <text class="sub" x="30" y="160">parkingbae.me</text>
+  <text class="sub" x="30" y="176">Leaflet map</text>
+
+  <!-- API -->
+  <rect class="bx bxa" x="246" y="100" width="186" height="100" rx="3"/>
+  <text class="ttl" x="264" y="128">Flask API</text>
+  <text class="sub" x="264" y="148">SQLAlchemy + gunicorn</text>
+  <text class="sub" x="264" y="164">hosted on Render</text>
+  <text class="note" x="264" y="186">CORS locked to origin</text>
+
+  <!-- Postgres -->
+  <rect class="bx" x="530" y="26" width="234" height="80" rx="3"/>
+  <text class="ttl" x="548" y="54">PostgreSQL</text>
+  <text class="sub" x="548" y="74">parking_data</text>
+  <text class="sub" x="548" y="90">vic_car_ownership_data</text>
+
+  <!-- Council API -->
+  <rect class="bx" x="530" y="194" width="234" height="80" rx="3"/>
+  <text class="ttl" x="548" y="222">Melbourne sensor API</text>
+  <text class="sub" x="548" y="242">live kerbside occupancy</text>
+  <text class="sub" x="548" y="258">3,309 records</text>
+
+  <!-- Flows -->
+  <path class="ln" d="M170 150 H240"/>
+  <path class="ln" d="M432 132 H480 V70 H524"/>
+  <path class="ln" d="M432 168 H480 V232 H524"/>
+
+  <!-- Annotations -->
+  <text class="note" x="176" y="142">HTTPS</text>
+  <text class="note" x="440" y="96">SSL required</text>
+  <text class="note" x="440" y="206">paginated, 100 per page</text>
+
+  <!-- Merge callout -->
+  <rect class="bx" x="246" y="228" width="186" height="56" rx="3" stroke-dasharray="4 3"/>
+  <text class="sub" x="262" y="250" fill="#f0b429">merge step</text>
+  <text class="sub" x="262" y="268">index signs, join on kerbsideid</text>
+  <path d="M339 200 V224" stroke="#e01b2e" stroke-width="1.8" fill="none" marker-end="url(#pb-arrow)"/>
+</svg>

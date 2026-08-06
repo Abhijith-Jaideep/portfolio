@@ -28,8 +28,8 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
               label={study.media.caption}
             />
           ) : (
-            <div className="h-28 w-28">
-              <DiagramFrame />
+            <div className="w-28">
+              <DiagramFrame src={study.media.src} />
             </div>
           )}
         </div>
@@ -84,6 +84,17 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
             )}
           >
             <div className="border-t border-border px-6 pb-8 pt-6 md:px-8">
+              {/* Diagrams are landscape, so they get full width above the
+                  two-column body rather than the narrow media column. */}
+              {study.media.kind === "diagram" && study.media.src && (
+                <div className="mb-8">
+                  <DiagramFrame
+                    src={study.media.src}
+                    label={study.media.caption ?? "System architecture"}
+                  />
+                </div>
+              )}
+
               <div className="grid gap-10 md:grid-cols-[240px_1fr]">
                 <div className="flex flex-col items-center gap-4 md:items-start">
                   {study.media.kind === "phone" ? (
@@ -100,9 +111,11 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                       )}
                     </>
                   ) : (
-                    <div className="h-56 w-full">
-                      <DiagramFrame label="System architecture" />
-                    </div>
+                    !study.media.src && (
+                      <div className="h-56 w-full">
+                        <DiagramFrame label="System architecture" />
+                      </div>
+                    )
                   )}
 
                   <div className="flex flex-wrap gap-2">

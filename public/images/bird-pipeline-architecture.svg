@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" width="780" height="300" role="img" aria-label="Bird classification pipeline: uploads land in S3, trigger a Dockerised Lambda running an ML model, results are written to DynamoDB and PostgreSQL, with CloudWatch capturing logs">
+  <defs>
+    <marker id="bp-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e01b2e"/>
+    </marker>
+    <style>
+      .bx   { fill:#15100f; stroke:rgba(255,255,255,0.18); stroke-width:1.5; }
+      .bxa  { stroke:#e01b2e; }
+      .ttl  { font-family:'Segoe UI',Arial,sans-serif; font-size:15px; font-weight:700; fill:#f5efe9; }
+      .sub  { font-family:Consolas,'Courier New',monospace; font-size:11px; fill:#a2938c; }
+      .note { font-family:Consolas,'Courier New',monospace; font-size:10.5px; fill:#f0b429; }
+      .ln   { stroke:#e01b2e; stroke-width:1.8; fill:none; marker-end:url(#bp-arrow); }
+    </style>
+  </defs>
+
+  <!-- Upload -->
+  <rect class="bx" x="14" y="96" width="140" height="72" rx="3"/>
+  <text class="ttl" x="30" y="124">Upload</text>
+  <text class="sub" x="30" y="144">image or video</text>
+
+  <!-- S3 -->
+  <rect class="bx" x="204" y="96" width="140" height="72" rx="3"/>
+  <text class="ttl" x="220" y="124">S3</text>
+  <text class="sub" x="220" y="144">object storage</text>
+
+  <!-- Lambda -->
+  <rect class="bx bxa" x="394" y="84" width="180" height="96" rx="3"/>
+  <text class="ttl" x="412" y="112">Lambda</text>
+  <text class="sub" x="412" y="132">Dockerised deps</text>
+  <text class="sub" x="412" y="148">ML species model</text>
+  <text class="note" x="412" y="168">serverless, no idle cost</text>
+
+  <!-- Datastores -->
+  <rect class="bx" x="624" y="60" width="142" height="60" rx="3"/>
+  <text class="ttl" x="640" y="86">DynamoDB</text>
+  <text class="sub" x="640" y="104">classifications</text>
+
+  <rect class="bx" x="624" y="146" width="142" height="60" rx="3"/>
+  <text class="ttl" x="640" y="172">PostgreSQL</text>
+  <text class="sub" x="640" y="190">metadata</text>
+
+  <!-- CloudWatch -->
+  <rect class="bx" x="394" y="220" width="180" height="58" rx="3" stroke-dasharray="4 3"/>
+  <text class="sub" x="412" y="242" fill="#f0b429">CloudWatch</text>
+  <text class="sub" x="412" y="260">runtime logs and debugging</text>
+
+  <!-- Flows -->
+  <path class="ln" d="M154 132 H198"/>
+  <path class="ln" d="M344 132 H388"/>
+  <path class="ln" d="M574 116 H600 V90 H618"/>
+  <path class="ln" d="M574 148 H600 V176 H618"/>
+  <path d="M484 180 V216" stroke="#e01b2e" stroke-width="1.8" fill="none" marker-end="url(#bp-arrow)"/>
+
+  <text class="note" x="350" y="122">on upload</text>
+</svg>

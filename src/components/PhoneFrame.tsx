@@ -39,7 +39,33 @@ export function PhoneFrame({
   );
 }
 
-export function DiagramFrame({ label }: { label?: string }) {
+export function DiagramFrame({
+  label,
+  src,
+}: {
+  label?: string;
+  src?: string;
+}) {
+  if (src) {
+    return (
+      <figure className="hud-frame w-full border border-border bg-surface p-3">
+        {/* SVG scales cleanly, so a plain img beats next/image here */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt={label ?? "System architecture diagram"}
+          className="h-auto w-full"
+          loading="lazy"
+        />
+        {label && (
+          <figcaption className="mt-2 text-center font-mono text-[0.6rem] uppercase tracking-wider text-muted-2">
+            {label}
+          </figcaption>
+        )}
+      </figure>
+    );
+  }
+
   return (
     <div className="hud-frame flex h-full w-full flex-col items-center justify-center gap-3 border border-dashed border-border-strong bg-surface p-8 text-center">
       <div className="flex h-10 w-10 items-center justify-center border border-gold/50 text-gold">

@@ -175,7 +175,11 @@ export const caseStudies: CaseStudy[] = [
       repo: "https://github.com/Abhijith-Jaideep/Parkingbae",
       live: "https://www.parkingbae.me/",
     },
-    media: { kind: "diagram" },
+    media: {
+      kind: "diagram",
+      src: "/images/parkingbae-architecture.svg",
+      caption: "Request path and merge step",
+    },
   },
   {
     slug: "bird-classification-pipeline",
@@ -211,7 +215,11 @@ export const caseStudies: CaseStudy[] = [
       repo: null,
       live: null,
     },
-    media: { kind: "diagram" },
+    media: {
+      kind: "diagram",
+      src: "/images/bird-pipeline-architecture.svg",
+      caption: "Upload to classification pipeline",
+    },
   },
 ];
 
