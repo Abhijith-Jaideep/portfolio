@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Abhijith Jaideep, Portfolio
 
-## Getting Started
+Personal portfolio site positioning for full-time Software Engineer roles in
+Melbourne, with a primary focus on mobile development and a secondary focus on
+full-stack. Built to convert a recruiter or hiring manager into an interview
+within a two-minute skim.
 
-First, run the development server:
+Live: _(add the Vercel URL once deployed)_
+
+## Stack
+
+- Next.js 16 (App Router, Turbopack) with TypeScript
+- Tailwind CSS v4, themed through CSS custom properties in `globals.css`
+- No animation library. Scroll reveals use IntersectionObserver directly and
+  the case study accordion is a CSS `grid-template-rows` transition, so runtime
+  dependencies are just `next`, `react`, and `clsx`.
+
+## Local development
+
+```bash
+npm install
+```
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Layout
 
-## Learn More
+| Path | Purpose |
+| --- | --- |
+| `src/data/content.ts` | All site copy, projects, skills, and experience. Edit here first. |
+| `src/components/` | Section components (Hero, CaseStudies, Skills, About, Contact) |
+| `src/app/icon.svg` | AJ monogram, auto-wired as favicon by Next.js |
+| `public/video/` | Compressed app demo clips |
+| `public/resume/` | Downloadable resume, PDF and DOCX |
 
-To learn more about Next.js, take a look at the following resources:
+## Editing content
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Nearly all copy lives in `src/data/content.ts`. The components read from it, so
+adding a project or reordering skills does not require touching JSX.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Adding a demo video
 
-## Deploy on Vercel
+Case studies render a phone frame that shows a real clip when `media.src` is
+set, and a "coming soon" placeholder when it is not. To add one, compress a
+screen recording and point at it:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```ts
+media: {
+  kind: "phone",
+  src: "/video/your-clip.mp4",
+  poster: "/video/your-poster.jpg",
+  caption: "What the clip shows",
+}
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Keep clips short and small. The SustainaPet clip is an 18 second muted loop at
+540x1200 and 488KB, cut down from a 10 minute source. `ffmpeg` is not a project
+dependency; install it only when you need to cut a new clip:
+
+```bash
+npm install --no-save ffmpeg-static
+```
+
+## Deployment
+
+Deployed on Vercel from the `main` branch. Pushing to `main` triggers a new
+production deploy. No environment variables or build configuration are needed,
+since every route is statically prerendered.
