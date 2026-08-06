@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
 import type { CaseStudy } from "@/data/content";
 import { DiagramFrame, PhoneFrame } from "./PhoneFrame";
 
@@ -23,7 +22,11 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
       >
         <div className="hidden md:block md:w-28">
           {study.media.kind === "phone" ? (
-            <PhoneFrame />
+            <PhoneFrame
+              src={study.media.src}
+              poster={study.media.poster}
+              label={study.media.caption}
+            />
           ) : (
             <div className="h-28 w-28">
               <DiagramFrame />
@@ -67,20 +70,35 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
         </div>
       </button>
 
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.21, 0.47, 0.32, 0.98] }}
-            className="overflow-hidden"
+      {/* grid-rows 0fr -> 1fr animates to intrinsic height without JS measurement */}
+      <div
+        className="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.21,0.47,0.32,0.98)]"
+        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+      >
+        <div className="overflow-hidden">
+          <div
+            aria-hidden={!open}
+            className={clsx(
+              "transition-opacity duration-300",
+              open ? "opacity-100" : "opacity-0"
+            )}
           >
             <div className="border-t border-border px-6 pb-8 pt-6 md:px-8">
               <div className="grid gap-10 md:grid-cols-[240px_1fr]">
                 <div className="flex flex-col items-center gap-4 md:items-start">
                   {study.media.kind === "phone" ? (
-                    <PhoneFrame label="App walkthrough" />
+                    <>
+                      <PhoneFrame
+                        src={study.media.src}
+                        poster={study.media.poster}
+                        label={study.media.caption ?? "App walkthrough"}
+                      />
+                      {study.media.caption && (
+                        <p className="font-mono text-[0.6rem] uppercase tracking-wider text-muted-2">
+                          {study.media.caption}
+                        </p>
+                      )}
+                    </>
                   ) : (
                     <div className="h-56 w-full">
                       <DiagramFrame label="System architecture" />
@@ -132,9 +150,9 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                 </div>
               </div>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

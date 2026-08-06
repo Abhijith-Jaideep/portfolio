@@ -46,7 +46,10 @@ export interface CaseStudy {
   };
   media: {
     kind: "phone" | "diagram";
-    placeholder: true;
+    /** Omit to render the "coming soon" placeholder instead of a real clip. */
+    src?: string;
+    poster?: string;
+    caption?: string;
   };
 }
 
@@ -84,7 +87,7 @@ export const caseStudies: CaseStudy[] = [
       repo: "https://github.com/Abhijith-Jaideep",
       live: null,
     },
-    media: { kind: "phone", placeholder: true },
+    media: { kind: "phone" },
   },
   {
     slug: "sustainapet",
@@ -117,11 +120,16 @@ export const caseStudies: CaseStudy[] = [
     ],
     stack: ["Flutter", "Dart", "Flask", "Python", "REST APIs", "OCR"],
     links: {
-      demoVideo: null,
+      demoVideo: "/video/sustainapet-scan.mp4",
       repo: "https://github.com/Abhijith-Jaideep",
       live: null,
     },
-    media: { kind: "phone", placeholder: true },
+    media: {
+      kind: "phone",
+      src: "/video/sustainapet-scan.mp4",
+      poster: "/video/sustainapet-poster.jpg",
+      caption: "Receipt scan to carbon estimate",
+    },
   },
   {
     slug: "bird-classification-pipeline",
@@ -157,7 +165,7 @@ export const caseStudies: CaseStudy[] = [
       repo: "https://github.com/Abhijith-Jaideep",
       live: null,
     },
-    media: { kind: "diagram", placeholder: true },
+    media: { kind: "diagram" },
   },
 ];
 
@@ -254,26 +262,89 @@ export const certifications = [
   },
 ];
 
-export const skills = {
-  Mobile: ["Kotlin", "Jetpack Compose", "Flutter", "Dart", "React", "TypeScript"],
-  Backend: ["Java", "Python", "Flask", "REST APIs", "API Design", "BFF Architecture"],
-  "Cloud & DevOps": [
-    "AWS Lambda",
-    "S3",
-    "DynamoDB",
-    "API Gateway",
-    "CloudWatch",
-    "PostgreSQL",
-    "Docker",
-    "GitHub Actions",
-    "CI/CD",
-  ],
-  "Quality & Delivery": [
-    "JUnit",
-    "Mockito",
-    "Unit Testing",
-    "Code Reviews",
-    "Static Analysis",
-    "Agile/Scrum",
-  ],
-};
+/**
+ * Six skill domains, each rendered as a power gem in the skills section.
+ * Colours span the classic six-gem spectrum. Names are the actual
+ * engineering domains, not borrowed franchise terminology.
+ */
+export interface SkillGem {
+  id: string;
+  name: string;
+  power: string;
+  color: string;
+  items: string[];
+}
+
+export const skillGems: SkillGem[] = [
+  {
+    id: "mobile",
+    name: "Mobile",
+    power: "Native and cross-platform apps",
+    color: "#a855f7",
+    items: ["Kotlin", "Jetpack Compose", "Flutter", "Dart", "Material Design"],
+  },
+  {
+    id: "frontend",
+    name: "Frontend",
+    power: "Component-driven interfaces",
+    color: "#3b82f6",
+    items: [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Component-Based UI",
+      "Responsive Interfaces",
+    ],
+  },
+  {
+    id: "backend",
+    name: "Backend & APIs",
+    power: "Services that scale",
+    color: "#ef4444",
+    items: [
+      "Java",
+      "Python",
+      "Flask",
+      "REST APIs",
+      "API Design",
+      "BFF Architecture",
+      "Server-Side Validation",
+    ],
+  },
+  {
+    id: "cloud",
+    name: "Cloud",
+    power: "Serverless infrastructure",
+    color: "#f97316",
+    items: ["AWS Lambda", "S3", "DynamoDB", "API Gateway", "CloudWatch"],
+  },
+  {
+    id: "data",
+    name: "Data & DevOps",
+    power: "Storage and delivery pipelines",
+    color: "#22c55e",
+    items: [
+      "PostgreSQL",
+      "SQL",
+      "NoSQL Data Modelling",
+      "Docker",
+      "GitHub Actions",
+      "CI/CD",
+      "Git",
+    ],
+  },
+  {
+    id: "quality",
+    name: "Quality & Craft",
+    power: "Code that survives review",
+    color: "#eab308",
+    items: [
+      "JUnit",
+      "Mockito",
+      "Unit Testing",
+      "Code Reviews",
+      "Static Analysis",
+      "Agile/Scrum",
+    ],
+  },
+];

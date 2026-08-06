@@ -1,17 +1,40 @@
-export function PhoneFrame({ label }: { label?: string }) {
+export function PhoneFrame({
+  label,
+  src,
+  poster,
+}: {
+  label?: string;
+  src?: string;
+  poster?: string;
+}) {
   return (
     <div className="relative mx-auto aspect-[9/19.5] w-full max-w-[220px] rounded-[2rem] border-4 border-zinc-700/70 bg-black shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)]">
-      <div className="absolute left-1/2 top-2 h-1.5 w-14 -translate-x-1/2 rounded-full bg-zinc-800" />
-      <div className="flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-[1.6rem] bg-surface p-4 text-center">
-        <div className="flex h-10 w-10 items-center justify-center border border-gold/50 text-gold">
-          <PlayIcon />
+      <div className="absolute left-1/2 top-2 z-10 h-1.5 w-14 -translate-x-1/2 rounded-full bg-zinc-800" />
+
+      {src ? (
+        <video
+          className="h-full w-full rounded-[1.6rem] object-cover"
+          src={src}
+          poster={poster}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="metadata"
+          aria-label={label ?? "App demo recording"}
+        />
+      ) : (
+        <div className="flex h-full w-full flex-col items-center justify-center gap-3 overflow-hidden rounded-[1.6rem] bg-surface p-4 text-center">
+          <div className="flex h-10 w-10 items-center justify-center border border-gold/50 text-gold">
+            <PlayIcon />
+          </div>
+          <p className="font-mono text-[10px] uppercase leading-snug tracking-wider text-muted-2">
+            {label ?? "Demo recording"}
+            <br />
+            coming soon
+          </p>
         </div>
-        <p className="font-mono text-[10px] uppercase leading-snug tracking-wider text-muted-2">
-          {label ?? "Demo recording"}
-          <br />
-          coming soon
-        </p>
-      </div>
+      )}
     </div>
   );
 }
