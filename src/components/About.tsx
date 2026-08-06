@@ -58,6 +58,21 @@ export function About() {
                         </li>
                       ))}
                     </ul>
+                    {entry.links && (
+                      <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2">
+                        {entry.links.map((link) => (
+                          <a
+                            key={link.url}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-mono text-xs uppercase tracking-wider text-muted transition-colors hover:text-gold"
+                          >
+                            {link.label} ↗
+                          </a>
+                        ))}
+                      </div>
+                    )}
                   </li>
                 </Reveal>
               ))}

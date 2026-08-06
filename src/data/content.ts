@@ -17,7 +17,7 @@ export const uvp =
   "I ship production mobile apps end-to-end, from native Android and Flutter front-ends to the Flask APIs and AWS infrastructure behind them.";
 
 export const heroMetrics = [
-  { value: "3", label: "production mobile & cloud builds" },
+  { value: "4", label: "production mobile & cloud builds" },
   { value: "20+", label: "structured PRs shipped in an Agile team" },
   { value: "AWS", label: "Certified Cloud Practitioner" },
   { value: "0", label: "sponsorship required" },
@@ -132,6 +132,52 @@ export const caseStudies: CaseStudy[] = [
     },
   },
   {
+    slug: "parkingbae",
+    name: "ParkingBae",
+    tagline: "Live kerbside parking availability for Melbourne CBD",
+    period: "Aug 2025",
+    location: "Melbourne, VIC",
+    platformTags: ["Full-Stack", "Backend"],
+    summary:
+      "A React and Flask product that merges the City of Melbourne's real-time kerbside sensor feed with static parking-sign rules, so drivers can see where they can actually park right now. Live on its own domain.",
+    problem:
+      "Roughly 30% of Melbourne CBD traffic is drivers circling for a space, and on-street occupancy hits 90% at peak. Knowing a bay is free is only half the answer; you also need to know whether you are allowed to park in it at that hour.",
+    role:
+      "Built the whole stack: the React front end, the Flask API, the database schema, and the ingestion and merge logic between the two data sources.",
+    architecture: [
+      "React front end styled with Tailwind, served from parkingbae.me",
+      "Flask API on gunicorn with SQLAlchemy, CORS locked to the production origins",
+      "PostgreSQL over enforced SSL holding the parking-sign and VIC car-ownership datasets",
+      "Paginated ingestion of the council sensor API, which caps queries at 100 rows, walking all 3,309 records with a throttle so the endpoint does not block the client",
+      "Merge step builds an in-memory index of parking-sign rows, then joins live sensor readings against it by kerbside ID rather than re-scanning per record",
+    ],
+    highlights: [
+      "Handles the upstream 100-row query limit by discovering the total count first, then paging with a delay instead of assuming a fixed size",
+      "Pairs live occupancy with the sign rules that govern each bay, which is the part that makes the answer actionable",
+      "Insights view backs the problem with cited data on congestion, cost, and space scarcity",
+      "Connection pooling with pre-ping so idle database connections do not fail the first request",
+    ],
+    outcome: [
+      "Live and publicly reachable at parkingbae.me on a custom domain",
+      "Serves three endpoints over a real council data feed, not fixtures",
+    ],
+    stack: [
+      "React",
+      "Tailwind",
+      "Flask",
+      "SQLAlchemy",
+      "PostgreSQL",
+      "gunicorn",
+      "pytest",
+    ],
+    links: {
+      demoVideo: null,
+      repo: "https://github.com/Abhijith-Jaideep/Parkingbae",
+      live: "https://www.parkingbae.me/",
+    },
+    media: { kind: "diagram" },
+  },
+  {
     slug: "bird-classification-pipeline",
     name: "Bird Classification Cloud Pipeline",
     tagline: "Cloud-native ML pipeline for wildlife photographers and birdwatchers",
@@ -190,6 +236,8 @@ export interface ExperienceEntry {
   period: string;
   location: string;
   bullets: string[];
+  /** Public repos that back up the claims above. */
+  links?: { label: string; url: string }[];
 }
 
 export const experience: ExperienceEntry[] = [
@@ -217,6 +265,16 @@ export const experience: ExperienceEntry[] = [
       "Deployed a blog site supporting account creation, image posting, and user commenting",
       "Improved code quality and delivery reliability using advanced Git branching, commit, and merge practices across the team",
       "Maintained clear code documentation and adhered to SDLC principles to improve project velocity",
+    ],
+    links: [
+      {
+        label: "Sales call prioritisation model",
+        url: "https://github.com/Abhijith-Jaideep/Sales_Call_Prioritization",
+      },
+      {
+        label: "Comment sanitiser",
+        url: "https://github.com/Abhijith-Jaideep/Comment-Sanitizer",
+      },
     ],
   },
 ];
