@@ -158,8 +158,8 @@ export const caseStudies: CaseStudy[] = [
       "Connection pooling with pre-ping so idle database connections do not fail the first request",
     ],
     outcome: [
-      "Live and publicly reachable at parkingbae.me on a custom domain",
-      "Serves three endpoints over a real council data feed, not fixtures",
+      "Shipped to a custom domain at parkingbae.me with the API hosted separately on Render",
+      "Built against a live council data feed rather than fixtures, including the pagination and rate limiting that requires",
     ],
     stack: [
       "React",
