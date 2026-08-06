@@ -5,7 +5,7 @@ Melbourne, with a primary focus on mobile development and a secondary focus on
 full-stack. Built to convert a recruiter or hiring manager into an interview
 within a two-minute skim.
 
-Live: _(add the Vercel URL once deployed)_
+Live: **https://abhijith-jaideep.vercel.app**
 
 ## Stack
 
