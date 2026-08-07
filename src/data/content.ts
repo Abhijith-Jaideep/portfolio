@@ -49,6 +49,8 @@ export interface CaseStudy {
     repo: string | null;
     live: string | null;
   };
+  /** Sign-in details for a live demo, shown next to the live link. */
+  demoLogin?: { username: string; password: string; note?: string };
   media: {
     kind: "phone" | "diagram";
     /** Omit to render the "coming soon" placeholder instead of a real clip. */
@@ -275,6 +277,11 @@ export const caseStudies: CaseStudy[] = [
       demoVideo: null,
       repo: "https://github.com/Abhijith-Jaideep/Sales_Call_Prioritization",
       live: "https://sales-call-prioritization.onrender.com",
+    },
+    demoLogin: {
+      username: "admin",
+      password: "DemoPass2026",
+      note: "Synthetic data. First load can take about a minute while the free instance wakes.",
     },
     media: {
       kind: "diagram",

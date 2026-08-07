@@ -174,6 +174,33 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                         Private beta, demo above
                       </span>
                     )}
+
+                    {study.demoLogin && (
+                      <div className="hud-frame mt-1 border border-gold/30 bg-gold-soft/40 p-3">
+                        <p className="font-mono text-[0.6rem] uppercase tracking-[0.14em] text-gold">
+                          Demo login
+                        </p>
+                        <dl className="mt-2 space-y-1 font-mono text-xs">
+                          <div className="flex gap-2">
+                            <dt className="text-muted-2">user</dt>
+                            <dd className="text-foreground">
+                              {study.demoLogin.username}
+                            </dd>
+                          </div>
+                          <div className="flex gap-2">
+                            <dt className="text-muted-2">pass</dt>
+                            <dd className="text-foreground">
+                              {study.demoLogin.password}
+                            </dd>
+                          </div>
+                        </dl>
+                        {study.demoLogin.note && (
+                          <p className="mt-2 text-[0.65rem] leading-snug text-muted-2">
+                            {study.demoLogin.note}
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
 
