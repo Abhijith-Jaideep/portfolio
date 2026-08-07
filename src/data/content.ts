@@ -19,7 +19,7 @@ export const uvp =
 export const heroMetrics = [
   { value: "Monash", label: "Master of Information Technology" },
   { value: "20+", label: "structured PRs shipped in an Agile team" },
-  { value: "AWS", label: "Certified Cloud Practitioner" },
+  { value: "Full Stack", label: "Certified Specialist, ICT Academy of Kerala" },
   { value: "0", label: "sponsorship required" },
 ];
 
