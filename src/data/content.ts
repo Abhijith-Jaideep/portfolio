@@ -8,7 +8,9 @@ export const profile = {
   phone: "0469326984",
   linkedin: "https://www.linkedin.com/in/abhijith-jaideep/",
   github: "https://github.com/Abhijith-Jaideep",
-  headshot: "/images/headshot.png",
+  // Previous formal headshot is still at /images/headshot.png if this needs
+  // to be swapped back.
+  headshot: "/images/portrait.webp",
   resumePdf: "/resume/Abhijith_Jaideep_Resume.pdf",
   resumeDocx: "/resume/Abhijith_Jaideep_Resume.docx",
 };

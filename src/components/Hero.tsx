@@ -99,8 +99,8 @@ export function Hero() {
             <Image
               src={profile.headshot}
               alt={profile.name}
-              width={640}
-              height={800}
+              width={760}
+              height={950}
               priority
               className="h-auto w-full object-cover"
             />
