@@ -50,6 +50,9 @@ export interface CaseStudy {
     src?: string;
     poster?: string;
     caption?: string;
+    /** Product shot, rendered above the diagram where both exist. */
+    screenshot?: string;
+    screenshotCaption?: string;
   };
 }
 
@@ -179,6 +182,8 @@ export const caseStudies: CaseStudy[] = [
       kind: "diagram",
       src: "/images/parkingbae-architecture.svg",
       caption: "Request path and merge step",
+      screenshot: "/images/parkingbae-screenshot.webp",
+      screenshotCaption: "parkingbae.me, insights view",
     },
   },
   {

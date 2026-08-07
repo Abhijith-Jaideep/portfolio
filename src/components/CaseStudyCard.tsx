@@ -84,8 +84,26 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
             )}
           >
             <div className="border-t border-border px-6 pb-8 pt-6 md:px-8">
-              {/* Diagrams are landscape, so they get full width above the
-                  two-column body rather than the narrow media column. */}
+              {/* Screenshot proves the product is real; the diagram below it
+                  shows the engineering. Both are landscape, so they take full
+                  width rather than the narrow media column. */}
+              {study.media.screenshot && (
+                <figure className="hud-frame mb-6 w-full border border-border bg-surface p-3">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={study.media.screenshot}
+                    alt={`${study.name} interface`}
+                    className="h-auto w-full"
+                    loading="lazy"
+                  />
+                  {study.media.screenshotCaption && (
+                    <figcaption className="mt-2 text-center font-mono text-[0.6rem] uppercase tracking-wider text-muted-2">
+                      {study.media.screenshotCaption}
+                    </figcaption>
+                  )}
+                </figure>
+              )}
+
               {study.media.kind === "diagram" && study.media.src && (
                 <div className="mb-8">
                   <DiagramFrame
