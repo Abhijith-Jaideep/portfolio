@@ -280,6 +280,8 @@ export const caseStudies: CaseStudy[] = [
       kind: "diagram",
       src: "/images/salescall-architecture.svg",
       caption: "Lead entry to scored ranking",
+      screenshot: "/images/salescall-screenshot.webp",
+      screenshotCaption: "Priority list, ranked best first with band filters",
     },
   },
 ];
