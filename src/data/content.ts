@@ -17,13 +17,18 @@ export const uvp =
   "I ship production mobile apps end-to-end, from native Android and Flutter front-ends to the Flask APIs and AWS infrastructure behind them.";
 
 export const heroMetrics = [
-  { value: "4", label: "production mobile & cloud builds" },
+  { value: "5", label: "shipped production builds" },
   { value: "20+", label: "structured PRs shipped in an Agile team" },
   { value: "AWS", label: "Certified Cloud Practitioner" },
   { value: "0", label: "sponsorship required" },
 ];
 
-export type PlatformTag = "Mobile" | "Full-Stack" | "Cloud" | "Backend";
+export type PlatformTag =
+  | "Mobile"
+  | "Full-Stack"
+  | "Cloud"
+  | "Backend"
+  | "ML";
 
 export interface CaseStudy {
   slug: string;
@@ -227,6 +232,54 @@ export const caseStudies: CaseStudy[] = [
       kind: "diagram",
       src: "/images/bird-pipeline-architecture.svg",
       caption: "Upload to classification pipeline",
+    },
+  },
+  {
+    slug: "sales-call-prioritisation",
+    name: "Sales Call Prioritisation",
+    tagline: "Ranking insurance leads by likelihood to convert",
+    period: "2022",
+    location: "Kochi, India",
+    platformTags: ["Full-Stack", "ML"],
+    summary:
+      "A Flask application built at Suyati Technologies that scores incoming insurance leads with a decision tree, so the sales team calls the people most likely to buy first. Commercial work, not coursework.",
+    problem:
+      "The sales team worked a long, undifferentiated list of leads. Every prospect looked the same on paper, so time went into calls that were never going to convert.",
+    role:
+      "Built the application end to end: the authenticated Flask front end, the PostgreSQL schema, the feature pipeline, and the model that produces the ranking.",
+    architecture: [
+      "Flask with Jinja templates, account signup and login backed by werkzeug password hashing",
+      "PostgreSQL holding user accounts and lead records, exported to a flat table for training",
+      "Feature pipeline over seven fields: product category, date of birth, marital status, education, occupation, language, and annual income",
+      "Categorical fields label-encoded and features standard-scaled before training, on an 80/20 train and test split",
+      "scikit-learn DecisionTreeClassifier predicting lead quality, scored against a table of 5,667 records",
+    ],
+    highlights: [
+      "A newly submitted lead is scored on the spot and returned to the operator, rather than batched overnight",
+      "Ranking uses attributes the business already collected, so it needed no new data capture to adopt",
+      "Authentication and server-side validation built in from the start, since it handled real customer records",
+    ],
+    outcome: [
+      "Cut the effort and time to reach probable buyers by 30%",
+      "Delivered into a commercial engagement as a working internal tool",
+    ],
+    stack: [
+      "Python",
+      "Flask",
+      "scikit-learn",
+      "pandas",
+      "PostgreSQL",
+      "Jinja",
+    ],
+    links: {
+      demoVideo: null,
+      repo: "https://github.com/Abhijith-Jaideep/Sales_Call_Prioritization",
+      live: null,
+    },
+    media: {
+      kind: "diagram",
+      src: "/images/salescall-architecture.svg",
+      caption: "Lead entry to scored ranking",
     },
   },
 ];

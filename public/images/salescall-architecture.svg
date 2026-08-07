@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 300" width="780" height="300" role="img" aria-label="Sales call prioritisation architecture: a Flask app with hashed-password auth writes leads to PostgreSQL and scores them with a scikit-learn decision tree trained on 5,667 records">
+  <defs>
+    <marker id="sc-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e01b2e"/>
+    </marker>
+    <style>
+      .bx   { fill:#15100f; stroke:rgba(255,255,255,0.18); stroke-width:1.5; }
+      .bxa  { stroke:#e01b2e; }
+      .ttl  { font-family:'Segoe UI',Arial,sans-serif; font-size:15px; font-weight:700; fill:#f5efe9; }
+      .sub  { font-family:Consolas,'Courier New',monospace; font-size:11px; fill:#a2938c; }
+      .note { font-family:Consolas,'Courier New',monospace; font-size:10.5px; fill:#f0b429; }
+      .ln   { stroke:#e01b2e; stroke-width:1.8; fill:none; marker-end:url(#sc-arrow); }
+    </style>
+  </defs>
+
+  <!-- Client -->
+  <rect class="bx" x="14" y="112" width="156" height="76" rx="3"/>
+  <text class="ttl" x="30" y="140">Lead entry</text>
+  <text class="sub" x="30" y="160">Flask + Jinja views</text>
+  <text class="sub" x="30" y="176">signup and login</text>
+
+  <!-- App -->
+  <rect class="bx bxa" x="246" y="100" width="186" height="100" rx="3"/>
+  <text class="ttl" x="264" y="128">Flask app</text>
+  <text class="sub" x="264" y="148">/customer  /results</text>
+  <text class="sub" x="264" y="164">werkzeug password hash</text>
+  <text class="note" x="264" y="186">server-side validation</text>
+
+  <!-- Postgres -->
+  <rect class="bx" x="530" y="26" width="234" height="80" rx="3"/>
+  <text class="ttl" x="548" y="54">PostgreSQL</text>
+  <text class="sub" x="548" y="74">accounts and lead records</text>
+  <text class="sub" x="548" y="90">exported to final_table.csv</text>
+
+  <!-- Model -->
+  <rect class="bx" x="530" y="194" width="234" height="80" rx="3"/>
+  <text class="ttl" x="548" y="222">Decision tree</text>
+  <text class="sub" x="548" y="242">scikit-learn classifier</text>
+  <text class="sub" x="548" y="258">predicts lead quality</text>
+
+  <!-- Flows -->
+  <path class="ln" d="M170 150 H240"/>
+  <path class="ln" d="M432 132 H480 V70 H524"/>
+  <path class="ln" d="M432 168 H480 V232 H524"/>
+
+  <!-- Annotations -->
+  <text class="note" x="176" y="142">HTTPS</text>
+  <text class="note" x="440" y="96">writes new lead</text>
+  <text class="note" x="440" y="206">scores on submit</text>
+
+  <!-- Feature pipeline callout -->
+  <rect class="bx" x="246" y="228" width="186" height="56" rx="3" stroke-dasharray="4 3"/>
+  <text class="sub" x="262" y="250" fill="#f0b429">feature pipeline</text>
+  <text class="sub" x="262" y="268">7 fields, encoded and scaled</text>
+  <path d="M339 200 V224" stroke="#e01b2e" stroke-width="1.8" fill="none" marker-end="url(#sc-arrow)"/>
+</svg>
