@@ -1,7 +1,7 @@
 export const profile = {
   name: "Abhijith Jaideep",
   role: "Software Engineer",
-  focus: "Mobile Development · Full-Stack · Cloud",
+  focus: "Mobile · Web · Full-Stack · Cloud",
   location: "Melbourne, VIC",
   workRights: "Full working rights in Australia, no sponsorship required",
   email: "abhijithjaideep176@gmail.com",
@@ -14,7 +14,7 @@ export const profile = {
 };
 
 export const uvp =
-  "I ship production mobile apps end-to-end, from native Android and Flutter front-ends to the Flask APIs and AWS infrastructure behind them.";
+  "I ship production mobile and web apps end-to-end, from native Android, Flutter and React front-ends to the Flask APIs and AWS infrastructure behind them.";
 
 export const heroMetrics = [
   { value: "Monash", label: "Master of Information Technology" },

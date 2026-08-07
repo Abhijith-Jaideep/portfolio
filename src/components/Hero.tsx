@@ -46,7 +46,7 @@ export function Hero() {
               <span className="tag-pill tag-pill-gold">
                 {profile.workRights}
               </span>
-              <span className="tag-pill">Mobile first / Full-stack second</span>
+              <span className="tag-pill">Mobile and web / Full-stack</span>
             </div>
           </Reveal>
 

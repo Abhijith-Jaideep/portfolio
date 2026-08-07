@@ -19,9 +19,9 @@ const bebasNeue = Bebas_Neue({
 });
 
 const SITE_URL = "https://abhijith-jaideep.vercel.app";
-const TITLE = "Abhijith Jaideep | Software Engineer, Mobile & Full-Stack";
+const TITLE = "Abhijith Jaideep | Software Engineer, Mobile & Web";
 const DESCRIPTION =
-  "Software Engineer based in Melbourne building production mobile apps end-to-end: native Android, Flutter, Flask APIs, and AWS infrastructure. Full working rights, no sponsorship required.";
+  "Software Engineer based in Melbourne building production mobile and web apps end-to-end: native Android, Flutter, React, Flask APIs, and AWS infrastructure. Full working rights, no sponsorship required.";
 
 // og:image and twitter:image are injected automatically from
 // src/app/opengraph-image.png, so they are not declared here.
