@@ -50,6 +50,12 @@ export interface CaseStudy {
     demoVideo: string | null;
     repo: string | null;
     live: string | null;
+    /**
+     * Shown under the live button. Free hosting sleeps when idle, and a
+     * reviewer who thinks the app is broken will leave rather than wait, so
+     * the wait is stated up front.
+     */
+    liveNote?: string;
   };
   /** Sign-in details for a live demo, shown next to the live link. */
   demoLogin?: { username: string; password: string; note?: string };
@@ -193,6 +199,8 @@ export const caseStudies: CaseStudy[] = [
       demoVideo: null,
       repo: "https://github.com/Abhijith-Jaideep/Parkingbae",
       live: "https://www.parkingbae.me/",
+      liveNote:
+        "The page loads straight away, but the map pulls from a free-tier API that sleeps when idle. Give it up to a minute to wake on the first visit.",
     },
     media: {
       kind: "diagram",
@@ -292,11 +300,13 @@ export const caseStudies: CaseStudy[] = [
       demoVideo: null,
       repo: "https://github.com/Abhijith-Jaideep/Sales_Call_Prioritization",
       live: "https://sales-call-prioritization.onrender.com",
+      liveNote:
+        "Hosted free, so the instance sleeps when idle. The first load can take up to a minute to wake; it is quick after that.",
     },
     demoLogin: {
       username: "admin",
       password: "DemoPass2026",
-      note: "Synthetic data. First load can take about a minute while the free instance wakes.",
+      note: "Synthetic data, safe to click around in.",
     },
     media: {
       kind: "diagram",

@@ -185,6 +185,15 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                       </a>
                     )}
 
+                    {study.links.live && study.links.liveNote && (
+                      <p className="flex gap-1.5 text-[0.65rem] leading-snug text-muted-2">
+                        <span aria-hidden className="text-gold">
+                          ⏱
+                        </span>
+                        {study.links.liveNote}
+                      </p>
+                    )}
+
                     {study.links.repo && (
                       <a
                         href={study.links.repo}
