@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import clsx from "clsx";
+import { SoundToggle } from "./SoundToggle";
 
+// Order mirrors the page, so scroll-spy highlights follow the reading order.
 const LINKS = [
-  { id: "work", label: "Work" },
   { id: "about", label: "About" },
+  { id: "work", label: "Work" },
   { id: "skills", label: "Skills" },
   { id: "contact", label: "Contact" },
 ];
@@ -76,7 +78,8 @@ export function Nav() {
           ))}
         </ul>
 
-        <div className="hidden md:block">
+        <div className="hidden items-center gap-3 md:flex">
+          <SoundToggle />
           <a
             href="#contact"
             className="clip-notch inline-flex items-center bg-accent px-5 py-2.5 font-mono text-xs uppercase tracking-[0.14em] text-white transition-colors hover:bg-accent-strong"

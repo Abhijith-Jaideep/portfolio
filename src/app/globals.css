@@ -230,6 +230,77 @@ body {
   );
 }
 
+/* Slow drift on the halftone fields, so the background is not dead still. */
+@keyframes halftone-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 90px 90px; }
+}
+
+.halftone,
+.halftone-gold {
+  animation: halftone-drift 24s linear infinite;
+}
+
+/* Gold sweep along the diagonal rules. */
+@keyframes slash-sweep {
+  from { background-position: 0 0; }
+  to   { background-position: 56px 0; }
+}
+
+.slash-rule {
+  animation: slash-sweep 2.4s linear infinite;
+}
+
+/* Pulse behind the primary CTA. Opacity and shadow only, so it never
+   triggers layout and stays cheap. */
+@keyframes accent-pulse {
+  0%, 100% { box-shadow: 0 0 0 1px rgba(224, 27, 46, 0.35), 0 8px 30px -10px rgba(224, 27, 46, 0.5); }
+  50%      { box-shadow: 0 0 0 1px rgba(224, 27, 46, 0.55), 0 10px 42px -8px rgba(224, 27, 46, 0.85); }
+}
+
+.glow-accent {
+  animation: accent-pulse 3.2s ease-in-out infinite;
+}
+
+/* Buttons and cards lift slightly on hover. */
+.clip-notch,
+.tag-pill,
+.hud-frame {
+  transition: transform 0.22s cubic-bezier(0.21, 0.47, 0.32, 0.98),
+    border-color 0.22s ease, box-shadow 0.22s ease, color 0.22s ease,
+    background-color 0.22s ease;
+}
+
+a.clip-notch:hover,
+button.clip-notch:hover {
+  transform: translateY(-2px);
+}
+
+/* Gems breathe, each offset so the row is not in lockstep. */
+@keyframes gem-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+.gem-float {
+  animation: gem-float 3.6s ease-in-out infinite;
+}
+
+/* Caret after the hero kicker, a nod to a terminal prompt. */
+@keyframes caret-blink {
+  0%, 45%   { opacity: 1; }
+  50%, 95%  { opacity: 0; }
+  100%      { opacity: 1; }
+}
+
+.caret::after {
+  content: "_";
+  margin-left: 0.15em;
+  animation: caret-blink 1.15s steps(1, end) infinite;
+}
+
+/* Everything above is decoration. If the visitor asked for less motion,
+   none of it should run. */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -239,5 +310,19 @@ body {
   .glitch::before,
   .glitch::after {
     transition: none;
+  }
+
+  .halftone,
+  .halftone-gold,
+  .slash-rule,
+  .glow-accent,
+  .gem-float,
+  .caret::after {
+    animation: none;
+  }
+
+  a.clip-notch:hover,
+  button.clip-notch:hover {
+    transform: none;
   }
 }

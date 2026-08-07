@@ -16,7 +16,7 @@ export function Hero() {
           <Reveal>
             <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-accent" />
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-gold">
+              <p className="caret font-mono text-xs uppercase tracking-[0.18em] text-gold">
                 Software Engineer / Melbourne VIC
               </p>
             </div>

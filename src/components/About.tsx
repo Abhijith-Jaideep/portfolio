@@ -1,4 +1,5 @@
 import { certifications, education, experience } from "@/data/content";
+import { CredentialImage } from "./CredentialImage";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
@@ -125,7 +126,34 @@ export function About() {
                       <p className="mt-1 text-sm text-muted-2">
                         {cert.issuer}
                         {cert.date ? ` · ${cert.date}` : ""}
+                        {cert.note ? ` · ${cert.note}` : ""}
                       </p>
+
+                      {cert.credentialId && (
+                        <p className="mt-2 font-mono text-[0.65rem] uppercase tracking-wider text-muted-2">
+                          ID{" "}
+                          <span className="text-muted">
+                            {cert.credentialId}
+                          </span>
+                          {cert.verifyUrl && (
+                            <>
+                              {" · "}
+                              <a
+                                href={cert.verifyUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-gold hover:underline"
+                              >
+                                Verify ↗
+                              </a>
+                            </>
+                          )}
+                        </p>
+                      )}
+
+                      {cert.image && (
+                        <CredentialImage src={cert.image} alt={cert.name} />
+                      )}
                     </div>
                   </Reveal>
                 ))}

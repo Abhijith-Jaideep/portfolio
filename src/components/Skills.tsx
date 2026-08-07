@@ -35,7 +35,7 @@ export function Skills() {
             className="mt-12 flex flex-wrap items-end justify-center gap-4 sm:gap-8"
             onMouseLeave={() => setHovered(null)}
           >
-            {skillGems.map((gem) => {
+            {skillGems.map((gem, i) => {
               const lit = active === null || active === gem.id;
               return (
                 <button
@@ -51,9 +51,10 @@ export function Skills() {
                 >
                   <span
                     className={clsx(
-                      "transition-transform duration-300",
+                      "gem-float transition-transform duration-300",
                       active === gem.id ? "-translate-y-1.5 scale-110" : ""
                     )}
+                    style={{ animationDelay: `${i * 0.28}s` }}
                   >
                     <Gem color={gem.color} lit={lit} size={46} />
                   </span>

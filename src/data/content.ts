@@ -295,13 +295,25 @@ export const caseStudies: CaseStudy[] = [
 
 export const notableBuild = {
   name: "Robotic Railway Assistant",
-  tagline: "Patented Raspberry Pi-based intelligent robotic assistant",
+  tagline: "Raspberry Pi visitor guidance robot with a registered design",
   period: "Jun 2022 – May 2023",
   location: "Kochi, India",
   summary:
     "Bachelor's capstone project: an interactive robotic railway assistant giving passengers destination and train-announcement guidance in 10+ languages.",
+  // A registered design under India's Designs Act 2000, which protects the
+  // article's appearance. Deliberately not called a patent: that is a
+  // different instrument under a different act, and the distinction is one
+  // an IP-literate interviewer will know.
+  credential: {
+    label: "Registered design",
+    issuer: "Patent Office, Government of India",
+    id: "416502-001",
+    date: "Registered 10 May 2024",
+    image: "/images/credentials/design-registration.webp",
+    note: "Design registration for “Robot to Guide Visitors”, filed with ten co-applicants",
+  },
   highlights: [
-    "Patented design built on Raspberry Pi with a custom 3D-printed body",
+    "Registered design (no. 416502-001) built on Raspberry Pi with a custom 3D-printed body",
     "Neural network model queried Google APIs for translation and Railway system APIs for live train/announcement data",
     "Multilingual voice assistant using speech recognition, translation APIs, and text-to-speech across 10+ languages",
   ],
@@ -381,15 +393,35 @@ export const education: EducationEntry[] = [
   },
 ];
 
-export const certifications = [
+export interface Certification {
+  name: string;
+  issuer: string;
+  date?: string;
+  credentialId?: string;
+  verifyUrl?: string;
+  /** Full certificate, opened in a lightbox from the card. */
+  image?: string;
+  note?: string;
+}
+
+export const certifications: Certification[] = [
   {
+    // Named exactly as issued. This is the Coursera course authorised by AWS,
+    // not the AWS Certified Cloud Practitioner exam credential, and the
+    // issuer line says so rather than letting a reader assume otherwise.
     name: "AWS Cloud Practitioner Essentials",
-    issuer: "Amazon Web Services",
+    issuer: "Amazon Web Services, via Coursera",
     date: "Feb 2026",
+    credentialId: "4W3LF8XD4ZP1",
+    verifyUrl: "https://coursera.org/verify/4W3LF8XD4ZP1",
+    image: "/images/credentials/aws-cloud-practitioner.webp",
   },
   {
     name: "Certified Specialist in Full Stack Development",
-    issuer: "ICT Academy of Kerala, in collaboration with K-DISC",
+    issuer: "ICT Academy of Kerala with K-DISC",
+    date: "May 2022 to Mar 2023",
+    note: "162 hour program",
+    image: "/images/credentials/ict-full-stack.webp",
   },
   {
     name: "Deloitte Australia Technology Job Simulation",

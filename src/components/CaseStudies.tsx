@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import clsx from "clsx";
 import { caseStudies, notableBuild, type PlatformTag } from "@/data/content";
 import { CaseStudyCard } from "./CaseStudyCard";
+import { CredentialImage } from "./CredentialImage";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
@@ -77,7 +78,7 @@ export function CaseStudies() {
                   {notableBuild.tagline}
                 </p>
                 <p className="mt-2 font-mono text-xs uppercase tracking-wider text-muted-2">
-                  {notableBuild.period} / Patented
+                  {notableBuild.period} / {notableBuild.credential.label}
                 </p>
               </div>
             </div>
@@ -89,6 +90,25 @@ export function CaseStudies() {
                 </li>
               ))}
             </ul>
+
+            <div className="mt-5 max-w-sm border-t border-border pt-4">
+              <p className="font-mono text-[0.6rem] uppercase tracking-[0.16em] text-gold">
+                {notableBuild.credential.label} ·{" "}
+                {notableBuild.credential.id}
+              </p>
+              <p className="mt-1 text-xs text-muted-2">
+                {notableBuild.credential.issuer} ·{" "}
+                {notableBuild.credential.date}
+              </p>
+              <p className="mt-1 text-xs leading-snug text-muted-2">
+                {notableBuild.credential.note}
+              </p>
+              <CredentialImage
+                src={notableBuild.credential.image}
+                alt={`${notableBuild.credential.label} ${notableBuild.credential.id}`}
+                label="View registration"
+              />
+            </div>
           </div>
         </Reveal>
       </div>
