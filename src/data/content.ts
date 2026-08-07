@@ -425,8 +425,11 @@ export const certifications: Certification[] = [
   },
   {
     name: "Deloitte Australia Technology Job Simulation",
-    issuer: "Forage",
-    date: "Jun 2024",
+    issuer: "Deloitte, via Forage",
+    date: "Feb to Jun 2024",
+    note: "Coding, data analysis, development, cyber security, forensic technology",
+    credentialId: "uNiBoWh2YYyZ7KqYg",
+    image: "/images/credentials/deloitte-forage.webp",
   },
 ];
 
