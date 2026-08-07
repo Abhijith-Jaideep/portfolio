@@ -2,16 +2,27 @@ export function PhoneFrame({
   label,
   src,
   poster,
+  still,
 }: {
   label?: string;
   src?: string;
   poster?: string;
+  /** Static screen shown instead of video, used for collapsed thumbnails. */
+  still?: string;
 }) {
   return (
     <div className="relative mx-auto aspect-[9/19.5] w-full max-w-[220px] rounded-[2rem] border-4 border-zinc-700/70 bg-black shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)]">
       <div className="absolute left-1/2 top-2 z-10 h-1.5 w-14 -translate-x-1/2 rounded-full bg-zinc-800" />
 
-      {src ? (
+      {!src && still ? (
+        /* eslint-disable-next-line @next/next/no-img-element */
+        <img
+          src={still}
+          alt={label ?? "App screen"}
+          className="h-full w-full rounded-[1.6rem] object-cover"
+          loading="lazy"
+        />
+      ) : src ? (
         <video
           className="h-full w-full rounded-[1.6rem] object-cover"
           src={src}

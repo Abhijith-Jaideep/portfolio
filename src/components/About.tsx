@@ -9,18 +9,21 @@ export function About() {
         <Reveal>
           <SectionHeading
             kicker="Origin Story"
-            title="From retail floors to production pipelines"
+            title="Something from nothing"
           />
           <p className="mt-5 max-w-2xl leading-relaxed text-muted">
-            I build mobile, web, and cloud-based backend services with
-            Python, Java, Kotlin, and AWS, and I care as much about the
-            person using the app as the system behind it. Working a
-            fast-paced role with a leading Australian retailer taught me to
-            manage stakeholders, stay calm under pressure, and keep the
-            customer experience front and centre even during peak periods.
-            I carry that mindset into how I build software: clean, testable
-            code, API design that scales, and continuous deployment across
-            agile teams.
+            I have been pulled toward computer science for as long as I can
+            remember, and the thing that still gets me is the same thing that
+            got me at the start: you can make something out of nothing. You
+            string together words that make sense to both you and the machine,
+            and at the end of it there is an app a real person can hold and
+            use. That is the whole appeal.
+          </p>
+          <p className="mt-4 max-w-2xl leading-relaxed text-muted">
+            It is also why I never wanted to own just one layer of it. If I am
+            going to build something beautiful, I want to understand the whole
+            thing, from the screen in someone&apos;s hand down to the API and
+            the infrastructure serving it.
           </p>
         </Reveal>
 

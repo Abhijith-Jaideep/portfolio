@@ -53,6 +53,8 @@ export interface CaseStudy {
     /** Product shot, rendered above the diagram where both exist. */
     screenshot?: string;
     screenshotCaption?: string;
+    /** Static screen for the collapsed card, so thumbnails do not autoplay. */
+    thumbnail?: string;
   };
 }
 
@@ -132,6 +134,7 @@ export const caseStudies: CaseStudy[] = [
       src: "/video/sustainapet-scan.mp4",
       poster: "/video/sustainapet-poster.jpg",
       caption: "Receipt scan to carbon estimate",
+      thumbnail: "/images/sustainapet-home.webp",
     },
   },
   {

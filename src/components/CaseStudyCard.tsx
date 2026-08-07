@@ -22,14 +22,19 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
       >
         <div className="hidden md:block md:w-28">
           {study.media.kind === "phone" ? (
+            /* Collapsed cards show a still, so three thumbnails are not all
+               autoplaying video at once. The clip plays when expanded. */
             <PhoneFrame
-              src={study.media.src}
+              src={study.media.thumbnail ? undefined : study.media.src}
               poster={study.media.poster}
+              still={study.media.thumbnail}
               label={study.media.caption}
             />
           ) : (
             <div className="w-28">
-              <DiagramFrame src={study.media.src} />
+              {/* Prefer the product shot: a screenshot is recognisable at
+                  thumbnail size, a schematic is not. */}
+              <DiagramFrame src={study.media.screenshot ?? study.media.src} />
             </div>
           )}
         </div>
