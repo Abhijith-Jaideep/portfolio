@@ -17,7 +17,7 @@ export const uvp =
   "I ship production mobile apps end-to-end, from native Android and Flutter front-ends to the Flask APIs and AWS infrastructure behind them.";
 
 export const heroMetrics = [
-  { value: "5", label: "shipped production builds" },
+  { value: "Monash", label: "Master of Information Technology" },
   { value: "20+", label: "structured PRs shipped in an Agile team" },
   { value: "AWS", label: "Certified Cloud Practitioner" },
   { value: "0", label: "sponsorship required" },

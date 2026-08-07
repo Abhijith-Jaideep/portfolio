@@ -30,9 +30,9 @@ export function CaseStudies() {
       <div className="section-shell">
         <Reveal>
           <SectionHeading kicker="Featured Work" title="Production builds, not toy projects">
-            Five shipped systems spanning native mobile, full-stack mobile,
-            live data products, cloud infrastructure, and applied ML, each
-            built end to end, not just the UI layer.
+            Systems spanning native mobile, full-stack mobile, live data
+            products, cloud infrastructure, and applied ML, each built end to
+            end, not just the UI layer.
           </SectionHeading>
         </Reveal>
 
