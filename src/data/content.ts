@@ -274,7 +274,7 @@ export const caseStudies: CaseStudy[] = [
     links: {
       demoVideo: null,
       repo: "https://github.com/Abhijith-Jaideep/Sales_Call_Prioritization",
-      live: null,
+      live: "https://sales-call-prioritization.onrender.com",
     },
     media: {
       kind: "diagram",
