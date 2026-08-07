@@ -36,7 +36,7 @@
   <rect class="bx" x="530" y="194" width="234" height="80" rx="3"/>
   <text class="ttl" x="548" y="222">Melbourne sensor API</text>
   <text class="sub" x="548" y="242">live kerbside occupancy</text>
-  <text class="sub" x="548" y="258">3,309 records</text>
+  <text class="sub" x="548" y="258">6,324 records</text>
 
   <!-- Flows -->
   <path class="ln" d="M170 150 H240"/>
@@ -46,7 +46,7 @@
   <!-- Annotations -->
   <text class="note" x="176" y="142">HTTPS</text>
   <text class="note" x="440" y="96">SSL required</text>
-  <text class="note" x="440" y="206">paginated, 100 per page</text>
+  <text class="note" x="440" y="206">single bulk export</text>
 
   <!-- Merge callout -->
   <rect class="bx" x="246" y="228" width="186" height="56" rx="3" stroke-dasharray="4 3"/>
