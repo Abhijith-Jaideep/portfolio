@@ -28,38 +28,61 @@ function getContext(): AudioContext | null {
   return ctx;
 }
 
-/** Square-wave blip, the classic NES voice. */
-function blip(freq: number, durationMs: number, gainValue = 0.04) {
+/**
+ * Triangle wave through a lowpass, which is the NES triangle channel rather
+ * than its square channel: same chiptune character, none of the glassy edge
+ * a square wave has at these frequencies.
+ */
+function tone(
+  freq: number,
+  durationMs: number,
+  {
+    gainValue = 0.05,
+    sweepTo,
+    startAfterMs = 0,
+  }: { gainValue?: number; sweepTo?: number; startAfterMs?: number } = {}
+) {
   const audio = getContext();
   if (!audio) return;
   if (audio.state === "suspended") void audio.resume();
 
+  const t0 = audio.currentTime + startAfterMs / 1000;
+  const t1 = t0 + durationMs / 1000;
+
   const osc = audio.createOscillator();
   const gain = audio.createGain();
+  const lowpass = audio.createBiquadFilter();
 
-  osc.type = "square";
-  osc.frequency.setValueAtTime(freq, audio.currentTime);
+  osc.type = "triangle";
+  osc.frequency.setValueAtTime(freq, t0);
+  if (sweepTo) {
+    // Pitch envelope gives it a plucked feel instead of a flat beep.
+    osc.frequency.exponentialRampToValueAtTime(sweepTo, t1);
+  }
 
-  // Quick attack then exponential decay, otherwise square waves click.
-  gain.gain.setValueAtTime(0.0001, audio.currentTime);
-  gain.gain.exponentialRampToValueAtTime(gainValue, audio.currentTime + 0.008);
-  gain.gain.exponentialRampToValueAtTime(
-    0.0001,
-    audio.currentTime + durationMs / 1000
-  );
+  lowpass.type = "lowpass";
+  lowpass.frequency.setValueAtTime(2600, t0);
 
-  osc.connect(gain).connect(audio.destination);
-  osc.start();
-  osc.stop(audio.currentTime + durationMs / 1000);
+  // Fast attack, exponential decay. Ramping from near-zero avoids the click
+  // you get from starting a gain node at full volume.
+  gain.gain.setValueAtTime(0.0001, t0);
+  gain.gain.exponentialRampToValueAtTime(gainValue, t0 + 0.012);
+  gain.gain.exponentialRampToValueAtTime(0.0001, t1);
+
+  osc.connect(lowpass).connect(gain).connect(audio.destination);
+  osc.start(t0);
+  osc.stop(t1);
 }
 
+/** Soft low tick. Quiet enough to sit under a fast pointer sweep. */
 function playHover() {
-  blip(660, 60, 0.02);
+  tone(392, 55, { gainValue: 0.012 });
 }
 
+/** Warm two-note pluck, a fifth apart, each note sweeping slightly down. */
 function playClick() {
-  blip(880, 70);
-  window.setTimeout(() => blip(1320, 90), 70);
+  tone(523, 90, { gainValue: 0.05, sweepTo: 494 });
+  tone(784, 150, { gainValue: 0.045, sweepTo: 740, startAfterMs: 75 });
 }
 
 const STORAGE_KEY = "aj-sound";
@@ -79,11 +102,16 @@ function subscribe(cb: () => void) {
   };
 }
 
+/**
+ * On unless explicitly turned off. Note this cannot make sound play on load:
+ * browsers block audio until the user interacts with the page. What it does
+ * is make the first click audible without hunting for a switch first.
+ */
 function readPreference(): boolean {
   try {
-    return window.localStorage.getItem(STORAGE_KEY) === "on";
+    return window.localStorage.getItem(STORAGE_KEY) !== "off";
   } catch {
-    return false; // private mode
+    return true; // private mode, fall back to the default
   }
 }
 
@@ -97,8 +125,9 @@ function writePreference(value: boolean) {
 }
 
 export function SoundToggle() {
-  // Server always renders "off", which is also the correct default.
-  const on = useSyncExternalStore(subscribe, readPreference, () => false);
+  // Server snapshot matches the default, so hydration agrees for everyone
+  // except visitors who have explicitly opted out.
+  const on = useSyncExternalStore(subscribe, readPreference, () => true);
 
   useEffect(() => {
     const interactive = "a, button, [role='button']";
@@ -130,9 +159,11 @@ export function SoundToggle() {
     writePreference(next);
     // Confirm with the sound itself when switching on.
     if (next) {
-      blip(523, 70);
-      window.setTimeout(() => blip(784, 70), 80);
-      window.setTimeout(() => blip(1047, 110), 160);
+      // Rising three-note confirmation, scheduled on the audio clock rather
+      // than setTimeout so the timing does not jitter under load.
+      tone(523, 80, { sweepTo: 519 });
+      tone(659, 80, { startAfterMs: 70, sweepTo: 654 });
+      tone(880, 180, { startAfterMs: 140, sweepTo: 870 });
     }
   }, []);
 
