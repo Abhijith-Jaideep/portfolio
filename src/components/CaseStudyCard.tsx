@@ -34,13 +34,26 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
             <div className="w-28">
               {/* Prefer the product shot: a screenshot is recognisable at
                   thumbnail size, a schematic is not. */}
-              <DiagramFrame src={study.media.screenshot ?? study.media.src} />
+              <DiagramFrame
+                src={study.media.screenshots?.[0]?.src ?? study.media.src}
+              />
             </div>
           )}
         </div>
 
         <div>
           <div className="flex flex-wrap items-center gap-2">
+            {/* Surfaced on the collapsed card so someone skimming can see
+                which projects are actually clickable without opening each. */}
+            {study.links.live && (
+              <span className="inline-flex items-center gap-1.5 rounded-sm border border-accent/60 bg-accent-soft px-2 py-0.5 font-mono text-[0.6rem] uppercase tracking-[0.14em] text-accent">
+                <span
+                  aria-hidden
+                  className="inline-block h-1.5 w-1.5 rounded-full bg-accent"
+                />
+                Live
+              </span>
+            )}
             {study.platformTags.map((tag) => (
               <span key={tag} className="tag-pill">
                 {tag}
@@ -92,22 +105,25 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
               {/* Screenshot proves the product is real; the diagram below it
                   shows the engineering. Both are landscape, so they take full
                   width rather than the narrow media column. */}
-              {study.media.screenshot && (
-                <figure className="hud-frame mb-6 w-full border border-border bg-surface p-3">
+              {study.media.screenshots?.map((shot) => (
+                <figure
+                  key={shot.src}
+                  className="hud-frame mb-6 w-full border border-border bg-surface p-3"
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={study.media.screenshot}
-                    alt={`${study.name} interface`}
+                    src={shot.src}
+                    alt={shot.caption ?? `${study.name} interface`}
                     className="h-auto w-full"
                     loading="lazy"
                   />
-                  {study.media.screenshotCaption && (
+                  {shot.caption && (
                     <figcaption className="mt-2 text-center font-mono text-[0.6rem] uppercase tracking-wider text-muted-2">
-                      {study.media.screenshotCaption}
+                      {shot.caption}
                     </figcaption>
                   )}
                 </figure>
-              )}
+              ))}
 
               {study.media.kind === "diagram" && study.media.src && (
                 <div className="mb-8">
@@ -149,7 +165,26 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                     ))}
                   </div>
 
-                  <div className="flex flex-col gap-2 text-sm">
+                  <div className="flex w-full flex-col gap-2 text-sm">
+                    {/* Opening the running app is the highest value action
+                        here, so it gets the primary CTA treatment rather than
+                        sitting as a text link indistinguishable from the repo. */}
+                    {study.links.live && (
+                      <a
+                        href={study.links.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="clip-notch glow-accent inline-flex items-center justify-center gap-2 bg-accent px-5 py-3 font-mono text-xs uppercase tracking-[0.14em] text-white transition-colors hover:bg-accent-strong"
+                      >
+                        <span
+                          aria-hidden
+                          className="inline-block h-2 w-2 rounded-full bg-white"
+                        />
+                        Open live app
+                        <span aria-hidden>↗</span>
+                      </a>
+                    )}
+
                     {study.links.repo && (
                       <a
                         href={study.links.repo}
@@ -160,16 +195,8 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
                         Repository ↗
                       </a>
                     )}
-                    {study.links.live ? (
-                      <a
-                        href={study.links.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="font-mono text-xs uppercase tracking-wider text-muted hover:text-gold"
-                      >
-                        Live app ↗
-                      </a>
-                    ) : (
+
+                    {!study.links.live && (
                       <span className="font-mono text-xs uppercase tracking-wider text-muted-2">
                         Private beta, demo above
                       </span>

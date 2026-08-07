@@ -59,9 +59,11 @@ export interface CaseStudy {
     src?: string;
     poster?: string;
     caption?: string;
-    /** Product shot, rendered above the diagram where both exist. */
-    screenshot?: string;
-    screenshotCaption?: string;
+    /**
+     * Product shots, rendered above the diagram where both exist. The first
+     * one also becomes the collapsed card thumbnail.
+     */
+    screenshots?: { src: string; caption?: string }[];
     /** Static screen for the collapsed card, so thumbnails do not autoplay. */
     thumbnail?: string;
   };
@@ -194,8 +196,17 @@ export const caseStudies: CaseStudy[] = [
       kind: "diagram",
       src: "/images/parkingbae-architecture.svg",
       caption: "Request path and merge step",
-      screenshot: "/images/parkingbae-screenshot.webp",
-      screenshotCaption: "parkingbae.me, insights view",
+      screenshots: [
+        {
+          src: "/images/parkingbae-map.webp",
+          caption:
+            "Live map, 4,851 bays matched to their restriction rules",
+        },
+        {
+          src: "/images/parkingbae-screenshot.webp",
+          caption: "parkingbae.me, insights view",
+        },
+      ],
     },
   },
   {
@@ -289,8 +300,12 @@ export const caseStudies: CaseStudy[] = [
       kind: "diagram",
       src: "/images/salescall-architecture.svg",
       caption: "Lead entry to scored ranking",
-      screenshot: "/images/salescall-screenshot.webp",
-      screenshotCaption: "Priority list, ranked best first with band filters",
+      screenshots: [
+        {
+          src: "/images/salescall-screenshot.webp",
+          caption: "Priority list, ranked best first with band filters",
+        },
+      ],
     },
   },
 ];
