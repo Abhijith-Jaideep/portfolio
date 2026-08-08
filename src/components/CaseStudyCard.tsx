@@ -33,9 +33,15 @@ export function CaseStudyCard({ study }: { study: CaseStudy }) {
           ) : (
             <div className="w-28">
               {/* Prefer the product shot: a screenshot is recognisable at
-                  thumbnail size, a schematic is not. */}
+                  thumbnail size, a schematic is not. An explicit thumbnail
+                  wins, for cards whose in-card shot is a detail crop that
+                  would read as nothing at 112px wide. */}
               <DiagramFrame
-                src={study.media.screenshots?.[0]?.src ?? study.media.src}
+                src={
+                  study.media.thumbnail ??
+                  study.media.screenshots?.[0]?.src ??
+                  study.media.src
+                }
               />
             </div>
           )}
