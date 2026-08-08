@@ -320,6 +320,64 @@ export const caseStudies: CaseStudy[] = [
       ],
     },
   },
+  {
+    slug: "comment-sanitizer",
+    name: "Comment Sanitizer",
+    tagline: "A blog that scores every comment before it reaches the database",
+    period: "2022, revived 2026",
+    location: "Kochi, India",
+    platformTags: ["Full-Stack", "ML"],
+    summary:
+      "A MERN blog where a scikit-learn service sits in front of the comment endpoint. Every comment is classified before it is stored, so a toxic one is rejected rather than moderated after the fact.",
+    problem:
+      "Comment moderation is normally reactive: something abusive gets posted, other people see it, and a human removes it later. The interesting version is to make the write itself conditional on a model's verdict.",
+    role:
+      "Built the original three-service application. Returned to it in 2026 to retrain the model, replace the configuration, and deploy the whole thing.",
+    architecture: [
+      "React client on Vercel, Express and Mongoose API plus a Flask sanitiser on Render, MongoDB Atlas for storage",
+      "The API calls the sanitiser before writing, so the model decides whether the comment is ever persisted",
+      "TF-IDF over 50,000 uni and bigram features feeding a OneVsRest logistic regression across six labels: toxic, severe toxic, obscene, threat, insult, identity hate",
+      "Multi-label rather than binary by design: the service sums the six independent probabilities and flags on a threshold, which a two-class model cannot express",
+      "JWT authentication, with the secret and every service URL read from the environment",
+    ],
+    highlights: [
+      "Mean ROC AUC of 0.979 across the six labels, trained on 159,571 comments with a 20% holdout",
+      "Classifies in roughly 0.2 seconds, fast enough to sit inline in the request rather than in a queue",
+      "Retrained from scratch in 2026 after the original model artefacts turned out never to have been committed, leaving the service unable to start on a fresh checkout",
+      "Measured the decision threshold rather than trusting it: the inherited cut-off scored 0.95 precision but only 0.58 recall, so it was missing 42% of toxic comments",
+    ],
+    outcome: [
+      "Live across three hosted services and a managed database, all on free tiers",
+      "Closed a real security hole found on the way: the JWT signing secret was a literal string committed to a public repository, so anyone reading it could mint a token for any account",
+    ],
+    stack: [
+      "React",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "Flask",
+      "scikit-learn",
+      "JWT",
+    ],
+    links: {
+      demoVideo: null,
+      repo: "https://github.com/Abhijith-Jaideep/Comment-Sanitizer",
+      live: "https://commentsanitizer.vercel.app",
+      liveNote:
+        "The page loads straight away. Posting a comment calls two free-tier services that sleep when idle, so the first one can take a minute.",
+    },
+    media: {
+      kind: "diagram",
+      src: "/images/commentsanitizer-architecture.svg",
+      caption: "Comment path, with the model gating the write",
+      screenshots: [
+        {
+          src: "/images/commentsanitizer-landing.webp",
+          caption: "The blog front end, running on Vercel",
+        },
+      ],
+    },
+  },
 ];
 
 export const notableBuild = {

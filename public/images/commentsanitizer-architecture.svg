@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 330" width="820" height="330" role="img" aria-label="Comment Sanitizer architecture: a React client posts a comment to an Express API, which sends it to a Flask scikit-learn service for classification and only writes it to MongoDB if the model returns Positive">
+  <defs>
+    <marker id="cs-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#e01b2e"/>
+    </marker>
+    <marker id="cs-arrow-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f0b429"/>
+    </marker>
+    <style>
+      .bx   { fill:#15100f; stroke:rgba(255,255,255,0.18); stroke-width:1.5; }
+      .bxa  { stroke:#e01b2e; stroke-width:2; }
+      .ttl  { font-family:'Segoe UI',Arial,sans-serif; font-size:15px; font-weight:700; fill:#f5efe9; }
+      .sub  { font-family:Consolas,'Courier New',monospace; font-size:11px; fill:#a2938c; }
+      .note { font-family:Consolas,'Courier New',monospace; font-size:10.5px; fill:#f0b429; }
+      .ln   { stroke:#e01b2e; stroke-width:1.8; fill:none; marker-end:url(#cs-arrow); }
+      .lng  { stroke:#f0b429; stroke-width:1.6; fill:none; marker-end:url(#cs-arrow-gold); stroke-dasharray:5 3; }
+    </style>
+  </defs>
+
+  <!-- Client -->
+  <rect class="bx" x="14" y="126" width="168" height="86" rx="3"/>
+  <text class="ttl" x="30" y="154">React client</text>
+  <text class="sub" x="30" y="174">commentsanitizer</text>
+  <text class="sub" x="30" y="190">.vercel.app</text>
+  <text class="note" x="30" y="206">static, never sleeps</text>
+
+  <!-- API -->
+  <rect class="bx" x="252" y="118" width="188" height="102" rx="3"/>
+  <text class="ttl" x="270" y="148">Express API</text>
+  <text class="sub" x="270" y="170">JWT auth, Render</text>
+  <text class="sub" x="270" y="186">CORS locked</text>
+  <text class="note" x="270" y="208">holds the write</text>
+
+  <!-- The sanitiser, which is the point of the project -->
+  <rect class="bx bxa" x="536" y="16" width="268" height="104" rx="3"/>
+  <text class="ttl" x="554" y="44">Flask sanitiser</text>
+  <text class="sub" x="554" y="64">TF-IDF, OneVsRest x6</text>
+  <text class="sub" x="554" y="80">toxic, obscene, threat,</text>
+  <text class="sub" x="554" y="96">insult, identity hate</text>
+  <text class="note" x="554" y="113">mean ROC AUC 0.979</text>
+
+  <!-- Database -->
+  <rect class="bx" x="536" y="218" width="268" height="88" rx="3"/>
+  <text class="ttl" x="554" y="246">MongoDB Atlas</text>
+  <text class="sub" x="554" y="268">users, posts, comments</text>
+  <text class="note" x="554" y="290">clean comments only</text>
+
+  <!-- Flows. Corridors are deliberately at different x so the request and
+       the reply never cross each other. -->
+  <path class="ln"  d="M182 169 H246"/>
+  <path class="ln"  d="M440 140 H470 V50 H530"/>
+  <path class="lng" d="M536 86 H500 V190 H446"/>
+  <path class="ln"  d="M440 212 H510 V262 H530"/>
+
+  <!-- Annotations -->
+  <text class="note" x="190" y="160">comment</text>
+  <text class="note" x="480" y="42">classify</text>
+  <text class="note" x="506" y="152">Positive / Negative</text>
+  <text class="note" x="446" y="205">write if Positive</text>
+
+  <!-- Rejection callout -->
+  <rect class="bx" x="14" y="252" width="286" height="56" rx="3" stroke-dasharray="4 3"/>
+  <text class="sub" x="30" y="274" fill="#f0b429">rejected path</text>
+  <text class="sub" x="30" y="294">never reaches the database</text>
+</svg>
