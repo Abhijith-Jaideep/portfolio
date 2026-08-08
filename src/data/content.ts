@@ -366,6 +366,11 @@ export const caseStudies: CaseStudy[] = [
       liveNote:
         "The page loads straight away. Posting a comment calls two free-tier services that sleep when idle, so the first one can take a minute.",
     },
+    demoLogin: {
+      username: "demo",
+      password: "DemoPass2026",
+      note: "Open a post and comment twice: once normally, once rudely. The second one is refused before it is ever stored.",
+    },
     media: {
       kind: "diagram",
       src: "/images/commentsanitizer-architecture.svg",
